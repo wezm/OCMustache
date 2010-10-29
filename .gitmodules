@@ -1,0 +1,3 @@
+[submodule "cedar"]
+	path = cedar
+	url = http://github.com/pivotal/cedar.git
