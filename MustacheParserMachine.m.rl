@@ -10,54 +10,6 @@
 #define PTR_TO(F) (buffer + F)
 
 /** Machine **/
-// %{
-//   #include "mojo.h"
-//   #define YYSTYPE char *
-//   #define DUP yy = strdup(yytext)
-//   #define LPAREN '{'
-//   #define RPAREN '}'
-//   #define pc putchar
-//   #define p printf
-// %}
-// 
-// main       = { pc('\'') } 
-//            body+
-//              { pc('\'') }
-// 
-// body       = comment
-//            | var
-//            | enum
-//            | nl    
-//              { p("\\n\\\n") }
-//            | < . >
-//              { p("%s", yytext) }
-// 
-// comment    = open '!' < (!close .)* > close
-// 
-// var        = open a:id close
-//              { p("' + (Mojo.escape(Mojo.normalize(o.%s))) + '", a) }
-//            | open '.' close
-//              { p("' + (Mojo.escape(Mojo.normalize(o))) + '") }
-// 
-// enum       = open '#' - a:id close
-//              { p("' + %s(o, Mojo.normalize(o.%s), function(o)%c\n    return '", MOJO_ENUM_FN, a, LPAREN) }
-//            | open '#' - '.' close
-//              { p("' + %s(o, Mojo.normalize(o), function(o)%c\n    return '", MOJO_ENUM_FN, LPAREN) }
-//            | open '/' - a:id close
-//              { p("'%c) + '", RPAREN) }
-//            | open '/' - '.' close
-//              { p("'%c) + '", RPAREN) }
-//  
-// id         = < [a-zA-Z0-9_]+ > 
-//              { DUP }
-// 
-// open       = '{'+ -
-// close      = - '}'+
-// nl         = '\r' | '\r\n' | '\n'
-// -          = [ \t]*
-// 
-// %%
-
 %%{
 
 	machine mustache_parser;
@@ -71,15 +23,12 @@
 	close = "}}";
 
 	# Action
-	
-	
-
     # # After these types of tags, all whitespace will be skipped.
     # SKIP_WHITESPACE = [ '#', '^', '/' ]
-    # 
+    #
     # # The content allowed in a tag name.
     # ALLOWED_CONTENT = /(\w|[?!\/-])*/
-    # 
+    #
     # # These types of tags allow any content,
     # # the rest only allow ALLOWED_CONTENT.
     # ANY_CONTENT = [ '!', '=' ]
@@ -92,33 +41,47 @@
 	#type  = [#^/=<>&{];
 
 	# var     = ( open white identifier white close );
-	# 
+	#
 	# enum    = ( open '#' white identifier white close );
-	# 
+	#
 	# inverted = ( open '^' white identifier white close );
-	# 
+	#
 	# end_enum = ( open '/' white identifier white close );
-	# 
+	#
 	# comment = ( open '!' (any* -- close) close );
 
 	#body = ( comment | var | enum | nl );
 
 	action mark { MARK(mark, fpc); }
-	
+
+	action start_identifier {
+		MARK(identifier_start, fpc);
+	}
+
 	action got_identifier {
-		// size_t
-		// fwrite(const void *restrict ptr, size_t size, size_t nitems, FILE *restrict stream);
-		NSLog(@"mark %d, len: %d\n", mark, LEN(mark, fpc));
-		
-		fwrite(PTR_TO(mark), sizeof(char), LEN(mark, fpc), stdout);
+		// NSLog(@"mark %d, len: %d\n", mark, LEN(mark, fpc));
+
+		printf("Tag: ");
+		fwrite(PTR_TO(identifier_start), sizeof(char), LEN(identifier_start, fpc), stdout);
 		printf("\n");
 	}
 
-	tag = ( open white >mark identifier %got_identifier white close );
-	
-	text = (any+ -- open);
+	action write_static {
+		printf("Static text: ");
+		fwrite(ts, sizeof(char), te - ts, stdout);
+		printf("\n");
+	}
 
-	main := ( tag | text )*;
+	tag_type = [&/<>{^];
+
+	tag = ( open white >start_identifier identifier %got_identifier white close );
+
+	text = (any -- open)+;
+
+	main := |*
+		tag;
+		text => write_static;
+	*|;
 
 	# Actions
 
@@ -136,7 +99,7 @@
 {
 	if((self = [super init]) != nil)
 	{
-		
+
 		%% write init;
 		//delegate = [parser_delegate retain];
 	}
@@ -149,13 +112,14 @@
 //size_t http_parser_execute(http_parser *parser, const char *buffer, size_t len, size_t off)  {
 - (size_t)execute:(const char *)buffer length:(size_t)len offset:(size_t)off
 {
-  const char *p, *pe;
+  const char *p, *pe, *eof;
   //int cs = parser->cs;
 
   assert(off <= len && "offset past end of buffer");
 
   p = buffer+off;
   pe = buffer+len;
+  eof = pe;
 
   assert(*pe == '\0' && "pointer does not end on NUL");
   assert(pe - p == len - off && "pointers aren't same distance");
