@@ -32,5 +32,6 @@
 @protocol MustacheParserDelegate
 
 - (void)addStaticText:(const char *)text ofLength:(size_t)length;
+- (void)addTag:(const char *)tag ofLength:(size_t)length withSigil:(char)sigil;
 
 @end

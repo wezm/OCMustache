@@ -41,7 +41,7 @@
 			outputFiles = (
 				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE)",
 			);
-			script = "/opt/local/bin/ragel -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE} ${INPUT_FILE_PATH}";
+			script = "/opt/local/bin/ragel -G2 -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE} ${INPUT_FILE_PATH}";
 		};
 /* End PBXBuildRule section */
 

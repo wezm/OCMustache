@@ -60,11 +60,10 @@
 	}
 
 	action got_identifier {
-		// NSLog(@"mark %d, len: %d\n", mark, LEN(mark, fpc));
-
 		printf("Tag: ");
 		fwrite(PTR_TO(identifier_start), sizeof(char), LEN(identifier_start, fpc), stdout);
 		printf("\n");
+		[delegate addTag:PTR_TO(identifier_start) ofLength:LEN(identifier_start, fpc) withSigil:tag_type];
 	}
 
 	action write_static {
@@ -80,7 +79,7 @@
 	}
 
 	action init_type {
-		tag_type = '\0';
+		tag_type = ' ';
 	}
 
 	type = [#^/=!<>&];

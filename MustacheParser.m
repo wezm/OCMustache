@@ -30,6 +30,12 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 	}
 }
 
+@interface MustacheParser (Private)
+
+- (mustache_token_t *)tokenOfType:(enum mustache_token_type)type withText:(const char *)text ofLength:(size_t)length;
+
+@end
+
 @implementation MustacheParser
 
 - (id)init
@@ -52,11 +58,7 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 	return self;
 }
 
-#pragma mark Parser delegate methods
-
-- (void)addStaticText:(const char *)text ofLength:(size_t)length
-{
-	NSLog(@"Add static text");
+- (mustache_token_t *)tokenOfType:(enum mustache_token_type)type withText:(const char *)text ofLength:(size_t)length {
 	mustache_token_t *token = token_create(kCFAllocatorDefault);
 	mustache_string_t string = {
 		.text = text,
@@ -64,13 +66,61 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 	};
 
 	// Initialise the token
-	token->type = mustache_token_type_static;
+	token->type = type;
 	token->content = string;
 	token->depth = depth;
+
+	return token;
+}
+
+#pragma mark Parser delegate methods
+
+- (void)addStaticText:(const char *)text ofLength:(size_t)length
+{
+	NSLog(@"Add static text");
+	mustache_token_t *token = [self tokenOfType:mustache_token_type_static withText:text ofLength:length];
 
 	// Add it to the array
 	CFArrayAppendValue(tokens, token);
 	token_release(kCFAllocatorDefault, token);
+}
+
+- (void)addTag:(const char *)tag ofLength:(size_t)length withSigil:(char)sigil {
+	NSLog(@"Add tag");
+	mustache_token_t *token = NULL;
+
+	// Initialise the token
+	switch (sigil) {
+		case '#':
+			token = [self tokenOfType:mustache_token_type_section withText:tag ofLength:length];
+			depth++;
+			break;
+		case '^':
+			token = [self tokenOfType:mustache_token_type_inverted withText:tag ofLength:length];
+			depth++;
+			break;
+		case '/':
+			// End section
+			// TODO: check that it matches the last start section
+			depth--;
+			break;
+		case '!':
+			// Ignore comments
+			break;
+		case '{':
+		case '&':
+			token = [self tokenOfType:mustache_token_type_utag withText:tag ofLength:length];
+			break;
+		default:
+			token = [self tokenOfType:mustache_token_type_etag withText:tag ofLength:length];
+			break;
+	}
+
+	if(token != NULL) {
+		// Add it to the array
+		CFArrayAppendValue(tokens, token);
+		token_release(kCFAllocatorDefault, token);
+	}
 }
 
 //- (void)setRequestMethod:(const char *)at ofLength:(size_t)length
