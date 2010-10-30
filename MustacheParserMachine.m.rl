@@ -33,7 +33,7 @@
     # # the rest only allow ALLOWED_CONTENT.
     # ANY_CONTENT = [ '!', '=' ]
 
-	identifier = ( alnum | [?!/] | '-')+;
+	identifier = ( alnum | [?!/_] | '-')+;
 	# [a-zA-Z_0-9?!/]*;
 	# /(\w|[?!\/-])*/;
 
@@ -56,6 +56,7 @@
 
 	action start_identifier {
 		MARK(identifier_start, fpc);
+		printf("Start of %c tag\n", tag_type);
 	}
 
 	action got_identifier {
@@ -73,22 +74,45 @@
 		printf("\n");
 	}
 
-	#tag_type = [&/<>{^];
+	action set_type {
+		tag_type = *fpc;
+	}
 
-	tag = (
+	action init_type {
+		tag_type = '\0';
+	}
+
+	type = [#^/=!<>&];
+
+	var = (
 		open
+		type? >init_type $set_type <:
 		white
 		identifier >start_identifier %got_identifier
 		white
 		close %mark
 	) >write_static;
 
+	# Special case for triple mustache
+	unescaped = (
+		open
+		'{'
+		white
+		identifier >start_identifier %got_identifier
+		white
+		'}'
+		close %mark
+	) >write_static;
+
 	text = (any+ -- open) ;
 
-	main := (
-		tag |
-		text
-	)* %eof(write_static);
+	body = (
+		var
+		| text
+		| unescaped
+	);
+
+	main := body* %eof(write_static);
 
 }%%
 
@@ -117,6 +141,7 @@
 {
   const char *p, *pe, *eof;
   //int cs = parser->cs;
+  char tag_type = '\0';
 
   assert(off <= len && "offset past end of buffer");
 
