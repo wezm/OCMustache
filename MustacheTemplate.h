@@ -31,6 +31,7 @@ typedef struct _mustache_token {
 
 
 @interface MustacheTemplate : NSObject <MustacheParserDelegate> {
+	char *buffer;
 	MustacheParser *parser;
 	NSError *error;
 	NSUInteger depth;
@@ -73,7 +74,7 @@ typedef struct _mustache_token {
  * the parsing from that position.  It needs all of the original data as well 
  * so you have to append to the data buffer as you read.
  */
-- (size_t)executeOnData:(NSData *)data startingAt:(NSUInteger)start;
+- (BOOL)parse;
 
 - (void)setError:(NSError *)new_error;
 

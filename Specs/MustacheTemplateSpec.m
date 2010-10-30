@@ -12,25 +12,25 @@
 SPEC_BEGIN(MustacheTemplateSpec)
 describe(@"MustacheTemplate", ^{
 	__block MustacheTemplate *template;
-	
-    beforeEach(^{
-		template = [[MustacheTemplate alloc] init];
-    });
-	
-	afterEach(^{
-		[template release];
-	});
-	
+
+//    beforeEach(^{
+//    });
+//
+//	afterEach(^{
+//	});
+
     it(@"should read all input", ^{
 		NSString *templateText = @"Hello {{name}}\n"
 		@"You have just won ${{value}}!\n"
 		@"{{#in_ca}}\n"
 		@"Well, ${{taxed_value}}, after taxes.\n"
 		@"{{/in_ca}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
 
-		NSData *data = [templateText dataUsingEncoding:NSUTF8StringEncoding];
-		size_t bytes_read = [template executeOnData:data startingAt:0];
-		assert(bytes_read == [data length] && "didn't read all bytes");
+		[template parse];
+		assert([template bytesRead] == [templateText lengthOfBytesUsingEncoding:NSUTF8StringEncoding] && "didn't read all bytes");
+
+		[template release];
     });
 });
 SPEC_END

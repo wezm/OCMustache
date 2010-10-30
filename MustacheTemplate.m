@@ -38,10 +38,23 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 
 @implementation MustacheTemplate
 
-- (id)init
+- (id)initWithString:(NSString *)templateString
 {
 	if((self = [super init]) != nil)
 	{
+		NSUInteger length = [templateString lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+		NSAssert(length > 0, @"template is empty");
+		length++; // +1 for NUL character
+
+		buffer = malloc(sizeof(char) * length);
+		NSAssert(buffer != NULL, @"Unable to allocate buffer for tempalate");
+
+		if(![templateString getCString:buffer maxLength:length  encoding:NSUTF8StringEncoding]) {
+			NSLog(@"Unable to get UTF-8 version of template string");
+			[self release];
+			return nil;
+		}
+
 		parser = [[MustacheParser alloc] initWithDelegate:self];
 
 		CFArrayCallBacks callbacks = {
@@ -229,29 +242,21 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 }
 
 
-- (size_t)executeOnData:(NSData *)data startingAt:(NSUInteger)start
+- (BOOL)parse
 {
-	if(start < [data length])
-	{
-		[parser execute:[data bytes] length:[data length] offset:start];
+	[parser execute:buffer length:strlen(buffer) offset:0];
 
-		// TODO: This will raise an exception if the test fails, should be NSError
-		//validateMaxLength([parser bytesRead], MAX_HEADER_LENGTH, MAX_HEADER_LENGTH_ERR);
-		if([parser hasError])
-		{
-			//[self setError:[NSError errorWithDomain:WebErrorDomain code:HttpParserInvalidRequest userInfo:nil]];
-			NSLog(@"parser hasError");
-			return -1;
-		}
-	}
-	else
+	// TODO: This will raise an exception if the test fails, should be NSError
+	//validateMaxLength([parser bytesRead], MAX_HEADER_LENGTH, MAX_HEADER_LENGTH_ERR);
+	if([parser hasError])
 	{
-		//[self setError:[NSError errorWithDomain:WebErrorDomain code:HttpParserOutOfBoundsError userInfo:nil]];
-		NSLog(@"parser out of bounds");
-		return -1;
+		// TODO: Set error as below
+		//[self setError:[NSError errorWithDomain:WebErrorDomain code:HttpParserInvalidRequest userInfo:nil]];
+		NSLog(@"parser hasError");
+		return NO;
 	}
 
-	return [parser bytesRead];
+	return YES;
 }
 
 - (void)setError:(NSError *)new_error
@@ -297,6 +302,7 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 {
 	[parser release];
 	CFRelease(tokens);
+	if(buffer != NULL) free(buffer);
 	[super dealloc];
 }
 
