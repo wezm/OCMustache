@@ -44,11 +44,11 @@ describe(@"MustacheTemplate", ^{
 
 		[template parse];
 
-		NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys:@"Wesley", @"name",
+		NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys:@"Name < Test", @"name",
 								 [NSNumber numberWithInt:3000], @"value",
 								 [NSNumber numberWithBool:YES], @"in_ca",
 								 [NSNumber numberWithInt:2400], @"taxed_value", nil];
-		NSString *expected = @"Hello Wesley\n"
+		NSString *expected = @"Hello Name &lt; Test\n"
 		@"You have just won $3000!\n"
 		@"\n"
 		@"Well, $2400, after taxes.\n"

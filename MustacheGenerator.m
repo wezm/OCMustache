@@ -42,7 +42,7 @@
 					stringValue = [value description];
 				}
 
-				[result appendString:stringValue];
+				[result appendString:[stringValue stringByEncodingEntities]];
 				break;
 			default:
 				break;

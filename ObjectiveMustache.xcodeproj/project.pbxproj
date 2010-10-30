@@ -20,6 +20,9 @@
 		B17241FA127A6AC100E66602 /* MustacheParser.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParser.m.rl */; };
 		B172442D127C3E0E00E66602 /* MustacheGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B172442C127C3E0E00E66602 /* MustacheGenerator.m */; };
 		B172442E127C3E0E00E66602 /* MustacheGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B172442C127C3E0E00E66602 /* MustacheGenerator.m */; };
+		B1724473127C4D3F00E66602 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724472127C4D3F00E66602 /* NSString+HTML.m */; };
+		B1724474127C4D3F00E66602 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724472127C4D3F00E66602 /* NSString+HTML.m */; };
+		B1724476127C533B00E66602 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1724475127C533B00E66602 /* libxml2.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -113,6 +116,9 @@
 		B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheTemplateSpec.m; sourceTree = "<group>"; };
 		B172442B127C3E0E00E66602 /* MustacheGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheGenerator.h; sourceTree = "<group>"; };
 		B172442C127C3E0E00E66602 /* MustacheGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheGenerator.m; sourceTree = "<group>"; };
+		B1724471127C4D3F00E66602 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		B1724472127C4D3F00E66602 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		B1724475127C533B00E66602 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		C6859EA3029092ED04C91782 /* ObjectiveMustache.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ObjectiveMustache.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B17241DA127A693E00E66602 /* Cedar.framework in Frameworks */,
+				B1724476127C533B00E66602 /* libxml2.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +146,7 @@
 		08FB7794FE84155DC02AAC07 /* ObjectiveMustache */ = {
 			isa = PBXGroup;
 			children = (
+				B1724470127C4D2A00E66602 /* Categories */,
 				B17241DD127A695900E66602 /* Specs */,
 				B1724191127A689B00E66602 /* Cedar.xcodeproj */,
 				B159E13B121E617000517E46 /* Classes */,
@@ -162,6 +170,7 @@
 		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B1724475127C533B00E66602 /* libxml2.2.dylib */,
 				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
 			);
 			name = "External Frameworks and Libraries";
@@ -207,6 +216,15 @@
 				B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */,
 			);
 			path = Specs;
+			sourceTree = "<group>";
+		};
+		B1724470127C4D2A00E66602 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B1724471127C4D3F00E66602 /* NSString+HTML.h */,
+				B1724472127C4D3F00E66602 /* NSString+HTML.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		C6859EA2029092E104C91782 /* Documentation */ = {
@@ -329,6 +347,7 @@
 				B1724185127A66D500E66602 /* MustacheTemplate.m in Sources */,
 				B17241DF127A698600E66602 /* main.m in Sources */,
 				B172442E127C3E0E00E66602 /* MustacheGenerator.m in Sources */,
+				B1724474127C4D3F00E66602 /* NSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +360,7 @@
 				B17241EE127A6A1700E66602 /* main.m in Sources */,
 				B17241F9127A6AAB00E66602 /* MustacheTemplate.m in Sources */,
 				B172442D127C3E0E00E66602 /* MustacheGenerator.m in Sources */,
+				B1724473127C4D3F00E66602 /* NSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +412,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
@@ -405,6 +426,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};
@@ -420,7 +442,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = ObjectiveMustache_Prefix.pch;
 				INSTALL_PATH = /usr/local/bin;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -442,7 +464,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = ObjectiveMustache_Prefix.pch;
 				INSTALL_PATH = /usr/local/bin;
 				OTHER_LDFLAGS = (
 					"-framework",
