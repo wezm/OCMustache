@@ -32,5 +32,30 @@ describe(@"MustacheTemplate", ^{
 
 		[template release];
     });
+
+
+    it(@"should read render the template", ^{
+		NSString *templateText = @"Hello {{name}}\n"
+		@"You have just won ${{value}}!\n"
+		@"{{#in_ca}}\n"
+		@"Well, ${{taxed_value}}, after taxes.\n"
+		@"{{/in_ca}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+
+		[template parse];
+
+		NSDictionary *context = [NSDictionary dictionary];
+		NSString *expected = @"Hello \n"
+		@"You have just won $!\n"
+		@"\n"
+		@"Well, $, after taxes.\n"
+		@"";
+		NSString *result = [template renderInContext:context];
+		NSLog(@"%@", result);
+
+		assert([expected compare:result] == NSOrderedSame && "didn't read all bytes");
+
+		[template release];
+    });
 });
 SPEC_END

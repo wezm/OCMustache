@@ -7,7 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 #import "MustacheParser.h"
+#import "MustacheGenerator.h"
 
 enum mustache_token_type {
 	mustache_token_type_etag = 1, // Escaped tag
@@ -36,6 +38,7 @@ typedef struct _mustache_token {
 	NSError *error;
 	NSUInteger depth;
 	CFMutableArrayRef tokens;
+	MustacheGenerator *generator;
 }
 
 /**
@@ -65,16 +68,23 @@ typedef struct _mustache_token {
  * returning an Integer to indicate how much of the data has been read.  No matter
  * what the return value, you should call HttpParser#finished? and HttpParser#error?
  * to figure out if it's done parsing or there was an error.
- * 
- * This function now throws an exception when there is a parsing error.  This makes 
- * the logic for working with the parser much easier.  You can still test for an 
+ *
+ * This function now throws an exception when there is a parsing error.  This makes
+ * the logic for working with the parser much easier.  You can still test for an
  * error, but now you need to wrap the parser with an exception handling block.
  *
  * The third argument allows for parsing a partial request and then continuing
- * the parsing from that position.  It needs all of the original data as well 
+ * the parsing from that position.  It needs all of the original data as well
  * so you have to append to the data buffer as you read.
  */
 - (BOOL)parse;
+
+/*
+	Render the parsed template in the given context
+	the context should ne key-value coding compliant
+
+ */
+- (NSString *)renderInContext:(id)context;
 
 - (void)setError:(NSError *)new_error;
 

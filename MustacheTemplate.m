@@ -33,6 +33,7 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 @interface MustacheTemplate (Private)
 
 - (mustache_token_t *)tokenOfType:(enum mustache_token_type)type withText:(const char *)text ofLength:(size_t)length;
+- (MustacheGenerator *)generator;
 
 @end
 
@@ -170,6 +171,18 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 	return YES;
 }
 
+- (NSString *)renderInContext:(id)context {
+	return [[self generator] renderTokens:tokens inContext:context];
+}
+
+- (MustacheGenerator *)generator {
+	if(generator == nil) {
+		generator = [[MustacheGenerator alloc] init	];
+	}
+
+	return generator;
+}
+
 - (void)setError:(NSError *)new_error
 {
 	if(error != nil) [error release];
@@ -202,6 +215,7 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 	[parser release];
 	CFRelease(tokens);
 	if(buffer != NULL) free(buffer);
+	[generator release];
 	[super dealloc];
 }
 
