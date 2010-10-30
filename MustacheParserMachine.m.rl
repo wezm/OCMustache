@@ -77,7 +77,9 @@
 
 	tag = (
 		open
+		white
 		identifier >start_identifier %got_identifier
+		white
 		close %mark
 	) >write_static;
 
