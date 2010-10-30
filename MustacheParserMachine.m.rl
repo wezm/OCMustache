@@ -18,9 +18,9 @@
 	newline = ( "\r" | "\r\n" | "\n" );
 
 	# Character classes
-	white = ( " " | "\t" )*;
-	open  = "{{";
-	close = "}}";
+	white = [ \t]*;
+	open  = '{' :> '{';
+	close = '}' :> '}';
 
 	# Action
     # # After these types of tags, all whitespace will be skipped.
@@ -67,12 +67,6 @@
 	}
 
 	action write_static {
-		printf("Static text: ");
-		fwrite(ts, sizeof(char), te - ts, stdout);
-		printf("\n");
-	}
-
-	action start_tag {
 		// Write out all the static text up to this tag
 		printf("Static text: ");
 		fwrite(PTR_TO(mark), sizeof(char), LEN(mark, fpc), stdout);
@@ -82,16 +76,17 @@
 	#tag_type = [&/<>{^];
 
 	tag = (
-		open >start_tag
-		white
+		open
 		identifier >start_identifier %got_identifier
-		white
 		close %mark
-	);
+	) >write_static;
 
-	text = (any -- open)+;
+	text = (any+ -- open) ;
 
-	main := ( tag | text )*;
+	main := (
+		tag |
+		text
+	)* %eof(write_static);
 
 }%%
 
