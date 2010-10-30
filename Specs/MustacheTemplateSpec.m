@@ -44,11 +44,14 @@ describe(@"MustacheTemplate", ^{
 
 		[template parse];
 
-		NSDictionary *context = [NSDictionary dictionary];
-		NSString *expected = @"Hello \n"
-		@"You have just won $!\n"
+		NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys:@"Wesley", @"name",
+								 [NSNumber numberWithInt:3000], @"value",
+								 [NSNumber numberWithBool:YES], @"in_ca",
+								 [NSNumber numberWithInt:2400], @"taxed_value", nil];
+		NSString *expected = @"Hello Wesley\n"
+		@"You have just won $3000!\n"
 		@"\n"
-		@"Well, $, after taxes.\n"
+		@"Well, $2400, after taxes.\n"
 		@"";
 		NSString *result = [template renderInContext:context];
 		NSLog(@"%@", result);
