@@ -21,7 +21,7 @@ describe(@"MustacheParser", ^{
 		[parser release];
 	});
 	
-    it(@"should do something", ^{
+    it(@"should read all input", ^{
 		NSString *template = @"Hello {{name}}\n"
 		@"You have just won ${{value}}!\n"
 		@"{{#in_ca}}\n"

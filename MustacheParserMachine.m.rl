@@ -72,6 +72,7 @@
 		printf("Static text: ");
 		fwrite(PTR_TO(mark), sizeof(char), LEN(mark, fpc), stdout);
 		printf("\n");
+		[delegate addStaticText:PTR_TO(mark) ofLength:LEN(mark, fpc)];
 	}
 
 	action set_type {
@@ -86,11 +87,11 @@
 
 	var = (
 		open
-		type? >init_type $set_type <:
+		type? >init_type $set_type <: # Need to add error for unknown type
 		white
 		identifier >start_identifier %got_identifier
 		white
-		close %mark
+		close %mark # Need to skip whitespace for section tags
 	) >write_static;
 
 	# Special case for triple mustache
@@ -122,13 +123,13 @@
 @implementation MustacheParserMachine
 
 //int http_parser_init(http_parser *parser)  {
-- (id)initWithDelegate:(id)parser_delegate
+- (id)initWithDelegate:(id <MustacheParserDelegate>)parserDelegate
 {
 	if((self = [super init]) != nil)
 	{
 		mark = 0; // Mark the start of the text
 		%% write init;
-		//delegate = [parser_delegate retain];
+		delegate = parserDelegate;
 	}
 
 	return self;
