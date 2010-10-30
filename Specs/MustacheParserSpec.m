@@ -22,7 +22,13 @@ describe(@"MustacheParser", ^{
 	});
 	
     it(@"should do something", ^{
-		NSData *data = [@"Test: <h1>{{test}}</h1>" dataUsingEncoding:NSUTF8StringEncoding];
+		NSString *template = @"Hello {{name}}\n"
+		@"You have just won ${{value}}!\n"
+		@"{{#in_ca}}\n"
+		@"Well, ${{taxed_value}}, after taxes.\n"
+		@"{{/in_ca}}";
+
+		NSData *data = [template dataUsingEncoding:NSUTF8StringEncoding];
 		size_t bytes_read = [parser executeOnData:data startingAt:0];
 		assert(bytes_read == [data length] && "didn't read all bytes");
     });
