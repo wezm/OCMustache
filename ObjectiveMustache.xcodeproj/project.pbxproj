@@ -10,14 +10,14 @@
 		8DD76F9A0486AA7600D96B5E /* ObjectiveMustache.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* ObjectiveMustache.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* ObjectiveMustache.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* ObjectiveMustache.1 */; };
-		B172414E127A636200E66602 /* MustacheParserMachine.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParserMachine.m.rl */; };
-		B1724185127A66D500E66602 /* MustacheParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheParser.m */; };
+		B172414E127A636200E66602 /* MustacheParser.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParser.m.rl */; };
+		B1724185127A66D500E66602 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
 		B17241DA127A693E00E66602 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17241A1127A689B00E66602 /* Cedar.framework */; };
 		B17241DF127A698600E66602 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241DE127A698600E66602 /* main.m */; };
-		B17241E1127A69E600E66602 /* MustacheParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241E0127A69E600E66602 /* MustacheParserSpec.m */; };
+		B17241E1127A69E600E66602 /* MustacheTemplateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */; };
 		B17241EE127A6A1700E66602 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241DE127A698600E66602 /* main.m */; };
-		B17241F9127A6AAB00E66602 /* MustacheParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheParser.m */; };
-		B17241FA127A6AC100E66602 /* MustacheParserMachine.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParserMachine.m.rl */; };
+		B17241F9127A6AAB00E66602 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
+		B17241FA127A6AC100E66602 /* MustacheParser.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParser.m.rl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -101,14 +101,14 @@
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* ObjectiveMustache_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveMustache_Prefix.pch; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* ObjectiveMustache */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveMustache; sourceTree = BUILT_PRODUCTS_DIR; };
-		B159E13F121E626D00517E46 /* MustacheParserMachine.m.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MustacheParserMachine.m.rl; sourceTree = "<group>"; };
-		B159E140121E631A00517E46 /* MustacheParserMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheParserMachine.h; sourceTree = "<group>"; };
-		B159E141121E63A800517E46 /* MustacheParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheParser.h; sourceTree = "<group>"; };
-		B159E142121E63A800517E46 /* MustacheParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheParser.m; sourceTree = "<group>"; };
+		B159E13F121E626D00517E46 /* MustacheParser.m.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MustacheParser.m.rl; sourceTree = "<group>"; };
+		B159E140121E631A00517E46 /* MustacheParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheParser.h; sourceTree = "<group>"; };
+		B159E141121E63A800517E46 /* MustacheTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheTemplate.h; sourceTree = "<group>"; };
+		B159E142121E63A800517E46 /* MustacheTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheTemplate.m; sourceTree = "<group>"; };
 		B1724191127A689B00E66602 /* Cedar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cedar.xcodeproj; path = cedar/Cedar.xcodeproj; sourceTree = "<group>"; };
 		B17241D3127A690700E66602 /* Specs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Specs; sourceTree = BUILT_PRODUCTS_DIR; };
 		B17241DE127A698600E66602 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B17241E0127A69E600E66602 /* MustacheParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheParserSpec.m; sourceTree = "<group>"; };
+		B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheTemplateSpec.m; sourceTree = "<group>"; };
 		C6859EA3029092ED04C91782 /* ObjectiveMustache.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ObjectiveMustache.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,8 +176,8 @@
 		B159E13B121E617000517E46 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B159E141121E63A800517E46 /* MustacheParser.h */,
-				B159E142121E63A800517E46 /* MustacheParser.m */,
+				B159E141121E63A800517E46 /* MustacheTemplate.h */,
+				B159E142121E63A800517E46 /* MustacheTemplate.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -185,8 +185,8 @@
 		B159E144121E648C00517E46 /* State Machine */ = {
 			isa = PBXGroup;
 			children = (
-				B159E13F121E626D00517E46 /* MustacheParserMachine.m.rl */,
-				B159E140121E631A00517E46 /* MustacheParserMachine.h */,
+				B159E13F121E626D00517E46 /* MustacheParser.m.rl */,
+				B159E140121E631A00517E46 /* MustacheParser.h */,
 			);
 			name = "State Machine";
 			sourceTree = "<group>";
@@ -206,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				B17241DE127A698600E66602 /* main.m */,
-				B17241E0127A69E600E66602 /* MustacheParserSpec.m */,
+				B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -326,9 +326,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B172414E127A636200E66602 /* MustacheParserMachine.m.rl in Sources */,
+				B172414E127A636200E66602 /* MustacheParser.m.rl in Sources */,
 				8DD76F9A0486AA7600D96B5E /* ObjectiveMustache.m in Sources */,
-				B1724185127A66D500E66602 /* MustacheParser.m in Sources */,
+				B1724185127A66D500E66602 /* MustacheTemplate.m in Sources */,
 				B17241DF127A698600E66602 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,10 +337,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17241E1127A69E600E66602 /* MustacheParserSpec.m in Sources */,
-				B17241FA127A6AC100E66602 /* MustacheParserMachine.m.rl in Sources */,
+				B17241E1127A69E600E66602 /* MustacheTemplateSpec.m in Sources */,
+				B17241FA127A6AC100E66602 /* MustacheParser.m.rl in Sources */,
 				B17241EE127A6A1700E66602 /* main.m in Sources */,
-				B17241F9127A6AAB00E66602 /* MustacheParser.m in Sources */,
+				B17241F9127A6AAB00E66602 /* MustacheTemplate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "MustacheParser.h"
+#import "MustacheTemplate.h"
 
 static mustache_token_t *token_create (CFAllocatorRef allocator) {
 	int hint = 0;
@@ -30,19 +30,19 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 	}
 }
 
-@interface MustacheParser (Private)
+@interface MustacheTemplate (Private)
 
 - (mustache_token_t *)tokenOfType:(enum mustache_token_type)type withText:(const char *)text ofLength:(size_t)length;
 
 @end
 
-@implementation MustacheParser
+@implementation MustacheTemplate
 
 - (id)init
 {
 	if((self = [super init]) != nil)
 	{
-		machine = [[MustacheParserMachine alloc] initWithDelegate:self];
+		parser = [[MustacheParser alloc] initWithDelegate:self];
 
 		CFArrayCallBacks callbacks = {
 			.version = 0,
@@ -224,8 +224,8 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 
 - (BOOL)finish
 {
-	[machine finish];
-	return [machine isFinished];
+	[parser finish];
+	return [parser isFinished];
 }
 
 
@@ -233,14 +233,14 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 {
 	if(start < [data length])
 	{
-		[machine execute:[data bytes] length:[data length] offset:start];
+		[parser execute:[data bytes] length:[data length] offset:start];
 
 		// TODO: This will raise an exception if the test fails, should be NSError
-		//validateMaxLength([machine bytesRead], MAX_HEADER_LENGTH, MAX_HEADER_LENGTH_ERR);
-		if([machine hasError])
+		//validateMaxLength([parser bytesRead], MAX_HEADER_LENGTH, MAX_HEADER_LENGTH_ERR);
+		if([parser hasError])
 		{
 			//[self setError:[NSError errorWithDomain:WebErrorDomain code:HttpParserInvalidRequest userInfo:nil]];
-			NSLog(@"machine hasError");
+			NSLog(@"parser hasError");
 			return -1;
 		}
 	}
@@ -251,7 +251,7 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 		return -1;
 	}
 
-	return [machine bytesRead];
+	return [parser bytesRead];
 }
 
 - (void)setError:(NSError *)new_error
@@ -268,17 +268,17 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 
 - (BOOL)isFinished
 {
-	return [machine isFinished];
+	return [parser isFinished];
 }
 
 - (BOOL)hasError
 {
-	return [machine hasError];
+	return [parser hasError];
 }
 
 - (size_t)bytesRead
 {
-	return [machine bytesRead];
+	return [parser bytesRead];
 }
 
 //- (NSDictionary *)requestParams
@@ -295,7 +295,7 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 
 - (void)dealloc
 {
-	[machine release];
+	[parser release];
 	CFRelease(tokens);
 	[super dealloc];
 }

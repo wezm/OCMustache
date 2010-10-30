@@ -7,29 +7,29 @@
 //
 
 #import <Cedar/SpecHelper.h>
-#import "MustacheParser.h"
+#import "MustacheTemplate.h"
 
-SPEC_BEGIN(MustacheParserSpec)
-describe(@"MustacheParser", ^{
-	__block MustacheParser *parser;
+SPEC_BEGIN(MustacheTemplateSpec)
+describe(@"MustacheTemplate", ^{
+	__block MustacheTemplate *template;
 	
     beforeEach(^{
-		parser = [[MustacheParser alloc] init];
+		template = [[MustacheTemplate alloc] init];
     });
 	
 	afterEach(^{
-		[parser release];
+		[template release];
 	});
 	
     it(@"should read all input", ^{
-		NSString *template = @"Hello {{name}}\n"
+		NSString *templateText = @"Hello {{name}}\n"
 		@"You have just won ${{value}}!\n"
 		@"{{#in_ca}}\n"
 		@"Well, ${{taxed_value}}, after taxes.\n"
 		@"{{/in_ca}}";
 
-		NSData *data = [template dataUsingEncoding:NSUTF8StringEncoding];
-		size_t bytes_read = [parser executeOnData:data startingAt:0];
+		NSData *data = [templateText dataUsingEncoding:NSUTF8StringEncoding];
+		size_t bytes_read = [template executeOnData:data startingAt:0];
 		assert(bytes_read == [data length] && "didn't read all bytes");
     });
 });

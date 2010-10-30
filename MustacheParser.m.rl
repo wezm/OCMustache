@@ -1,4 +1,4 @@
-#import "MustacheParserMachine.h"
+#import "MustacheParser.h"
 #import <stdio.h>
 #import <assert.h>
 #import <stdlib.h>
@@ -119,7 +119,7 @@
 /** Data **/
 %% write data;
 
-@implementation MustacheParserMachine
+@implementation MustacheParser
 
 //int http_parser_init(http_parser *parser)  {
 - (id)initWithDelegate:(id <MustacheParserDelegate>)parserDelegate
