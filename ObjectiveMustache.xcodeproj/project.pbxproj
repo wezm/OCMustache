@@ -101,7 +101,6 @@
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* ObjectiveMustache_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveMustache_Prefix.pch; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* ObjectiveMustache */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveMustache; sourceTree = BUILT_PRODUCTS_DIR; };
-		B159E13E121E61B600517E46 /* parser.leg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parser.leg; sourceTree = "<group>"; };
 		B159E13F121E626D00517E46 /* MustacheParserMachine.m.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MustacheParserMachine.m.rl; sourceTree = "<group>"; };
 		B159E140121E631A00517E46 /* MustacheParserMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheParserMachine.h; sourceTree = "<group>"; };
 		B159E141121E63A800517E46 /* MustacheParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheParser.h; sourceTree = "<group>"; };
@@ -186,7 +185,6 @@
 		B159E144121E648C00517E46 /* State Machine */ = {
 			isa = PBXGroup;
 			children = (
-				B159E13E121E61B600517E46 /* parser.leg */,
 				B159E13F121E626D00517E46 /* MustacheParserMachine.m.rl */,
 				B159E140121E631A00517E46 /* MustacheParserMachine.h */,
 			);
