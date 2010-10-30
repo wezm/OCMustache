@@ -33,7 +33,7 @@
     # # the rest only allow ALLOWED_CONTENT.
     # ANY_CONTENT = [ '!', '=' ]
 
-	identifier = ( alnum | [?!/] | '-')*;
+	identifier = ( alnum | [?!/] | '-')+;
 	# [a-zA-Z_0-9?!/]*;
 	# /(\w|[?!\/-])*/;
 
