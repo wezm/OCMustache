@@ -72,20 +72,26 @@
 		printf("\n");
 	}
 
-	tag_type = [&/<>{^];
+	action start_tag {
+		// Write out all the static text up to this tag
+		printf("Static text: ");
+		fwrite(PTR_TO(mark), sizeof(char), LEN(mark, fpc), stdout);
+		printf("\n");
+	}
 
-	tag = ( open white >start_identifier identifier %got_identifier white close );
+	#tag_type = [&/<>{^];
+
+	tag = (
+		open >start_tag
+		white
+		identifier >start_identifier %got_identifier
+		white
+		close %mark
+	);
 
 	text = (any -- open)+;
 
-	main := |*
-		tag;
-		text => write_static;
-	*|;
-
-	# Actions
-
-		# action mark {MARK(mark, fpc); }
+	main := ( tag | text )*;
 
 }%%
 
@@ -99,7 +105,7 @@
 {
 	if((self = [super init]) != nil)
 	{
-
+		mark = 0; // Mark the start of the text
 		%% write init;
 		//delegate = [parser_delegate retain];
 	}
