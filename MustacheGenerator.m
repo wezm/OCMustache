@@ -44,6 +44,17 @@
 
 				[result appendString:[stringValue stringByEncodingEntities]];
 				break;
+			case mustache_token_type_utag:
+				value = [context valueForKey:[self stringWithContentsOfToken:token]];
+				if([value respondsToSelector:@selector(stringValue)]) {
+					stringValue = [value stringValue];
+				}
+				else {
+					stringValue = [value description];
+				}
+
+				[result appendString:stringValue];
+				break;
 			default:
 				break;
 		}

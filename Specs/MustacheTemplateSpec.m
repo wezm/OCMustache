@@ -38,7 +38,7 @@ describe(@"MustacheTemplate", ^{
 		NSString *templateText = @"Hello {{name}}\n"
 		@"You have just won ${{value}}!\n"
 		@"{{#in_ca}}\n"
-		@"Well, ${{taxed_value}}, after taxes.\n"
+		@"Well, ${{taxed_value}}, {{& after}} taxes.\n"
 		@"{{/in_ca}}";
 		template = [[MustacheTemplate alloc] initWithString:templateText];
 
@@ -47,16 +47,17 @@ describe(@"MustacheTemplate", ^{
 		NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys:@"Name < Test", @"name",
 								 [NSNumber numberWithInt:3000], @"value",
 								 [NSNumber numberWithBool:YES], @"in_ca",
-								 [NSNumber numberWithInt:2400], @"taxed_value", nil];
+								 [NSNumber numberWithInt:2400], @"taxed_value",
+								 @"<em>after</em>", @"after", nil];
 		NSString *expected = @"Hello Name &lt; Test\n"
 		@"You have just won $3000!\n"
 		@"\n"
-		@"Well, $2400, after taxes.\n"
+		@"Well, $2400, <em>after</em> taxes.\n"
 		@"";
 		NSString *result = [template renderInContext:context];
 		NSLog(@"%@", result);
 
-		assert([expected compare:result] == NSOrderedSame && "didn't read all bytes");
+		assert([expected compare:result] == NSOrderedSame && "result matches expected");
 
 		[template release];
     });
