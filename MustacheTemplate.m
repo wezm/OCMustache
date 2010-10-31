@@ -65,7 +65,6 @@
 	[parser execute:buffer length:strlen(buffer) offset:0];
 
 	// TODO: This will raise an exception if the test fails, should be NSError
-	//validateMaxLength([parser bytesRead], MAX_HEADER_LENGTH, MAX_HEADER_LENGTH_ERR);
 	if([parser hasError])
 	{
 		// TODO: Set error as below
