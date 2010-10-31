@@ -34,7 +34,7 @@ describe(@"MustacheTemplate", ^{
     });
 
 
-    it(@"should read render the template", ^{
+    it(@"renders the template", ^{
 		NSString *templateText = @"Hello {{name}}\n"
 		@"You have just won ${{value}}!\n"
 		@"{{#in_ca}}\n"
