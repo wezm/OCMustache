@@ -10,9 +10,8 @@
 
 
 @interface MustacheGenerator : NSObject {
-
 }
 
-- (NSString *)renderTokens:(CFArrayRef)tokens inContext:(id)context;
+- (NSString *)renderTokens:(NSArray *)tokens inContext:(id)context;
 
 @end

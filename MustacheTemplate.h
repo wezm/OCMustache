@@ -11,34 +11,12 @@
 #import "MustacheParser.h"
 #import "MustacheGenerator.h"
 
-enum mustache_token_type {
-	mustache_token_type_etag = 1, // Escaped tag
-	mustache_token_type_utag, // Unescaped tag
-	mustache_token_type_section,
-	mustache_token_type_inverted,
-	mustache_token_type_static, // Static text
-	mustache_token_type_partial
-};
-
-typedef struct _mustache_string {
-	const char *text;
-	unsigned length;
-} mustache_string_t;
-
-typedef struct _mustache_token {
-	enum mustache_token_type type;
-	unsigned depth;
-	mustache_string_t content;
-	unsigned ref_count;
-} mustache_token_t;
-
-
 @interface MustacheTemplate : NSObject <MustacheParserDelegate> {
 	char *buffer;
 	MustacheParser *parser;
 	NSError *error;
 	NSUInteger depth;
-	CFMutableArrayRef tokens;
+	NSMutableArray *tokens;
 	MustacheGenerator *generator;
 }
 

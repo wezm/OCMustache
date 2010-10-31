@@ -7,32 +7,10 @@
 //
 
 #import "MustacheTemplate.h"
-
-static mustache_token_t *token_create (CFAllocatorRef allocator) {
-	int hint = 0;
-	mustache_token_t *token = CFAllocatorAllocate(allocator, sizeof(mustache_token_t), hint);
-	token->ref_count = 1;
-
-	return token;
-}
-
-static const void *token_retain(CFAllocatorRef allocator, const void *value) {
-	mustache_token_t *token = (mustache_token_t *)value;
-	token->ref_count++;
-	return token;
-}
-
-static void token_release(CFAllocatorRef allocator, const void *value) {
-	mustache_token_t *token = (mustache_token_t *)value;
-	token->ref_count--;
-	if(token->ref_count == 0) {
-		CFAllocatorDeallocate(allocator, token);
-	}
-}
+#import "MustacheToken.h"
 
 @interface MustacheTemplate (Private)
 
-- (mustache_token_t *)tokenOfType:(enum mustache_token_type)type withText:(const char *)text ofLength:(size_t)length;
 - (MustacheGenerator *)generator;
 
 @end
@@ -57,34 +35,10 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 		}
 
 		parser = [[MustacheParser alloc] initWithDelegate:self];
-
-		CFArrayCallBacks callbacks = {
-			.version = 0,
-			.retain = token_retain,
-			.release = token_release,
-			.equal = NULL, // Will compare pointers
-			.copyDescription = NULL
-		};
-
-		tokens = CFArrayCreateMutable(kCFAllocatorDefault, 0, &callbacks);
+		tokens = [[NSMutableArray alloc] init];
 	}
 
 	return self;
-}
-
-- (mustache_token_t *)tokenOfType:(enum mustache_token_type)type withText:(const char *)text ofLength:(size_t)length {
-	mustache_token_t *token = token_create(kCFAllocatorDefault);
-	mustache_string_t string = {
-		.text = text,
-		.length = length
-	};
-
-	// Initialise the token
-	token->type = type;
-	token->content = string;
-	token->depth = depth;
-
-	return token;
 }
 
 #pragma mark Parser delegate methods
@@ -92,25 +46,25 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 - (void)addStaticText:(const char *)text ofLength:(size_t)length
 {
 	NSLog(@"Add static text");
-	mustache_token_t *token = [self tokenOfType:mustache_token_type_static withText:text ofLength:length];
+	MustacheToken *token = [[MustacheToken alloc] initWithType:mustache_token_type_static content:text contentLength:length];
 
 	// Add it to the array
-	CFArrayAppendValue(tokens, token);
-	token_release(kCFAllocatorDefault, token);
+	[tokens addObject:token];
+	[token release];
 }
 
 - (void)addTag:(const char *)tag ofLength:(size_t)length withSigil:(char)sigil {
 	NSLog(@"Add tag");
-	mustache_token_t *token = NULL;
+	MustacheToken *token = nil;
 
 	// Initialise the token
 	switch (sigil) {
 		case '#':
-			token = [self tokenOfType:mustache_token_type_section withText:tag ofLength:length];
+			token = [[MustacheToken alloc] initWithType:mustache_token_type_section content:tag contentLength:length];
 			depth++;
 			break;
 		case '^':
-			token = [self tokenOfType:mustache_token_type_inverted withText:tag ofLength:length];
+			token = [[MustacheToken alloc] initWithType:mustache_token_type_inverted content:tag contentLength:length];
 			depth++;
 			break;
 		case '/':
@@ -123,17 +77,17 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 			break;
 		case '{':
 		case '&':
-			token = [self tokenOfType:mustache_token_type_utag withText:tag ofLength:length];
+			token = [[MustacheToken alloc] initWithType:mustache_token_type_utag content:tag contentLength:length];
 			break;
 		default:
-			token = [self tokenOfType:mustache_token_type_etag withText:tag ofLength:length];
+			token = [[MustacheToken alloc] initWithType:mustache_token_type_etag content:tag contentLength:length];
 			break;
 	}
 
-	if(token != NULL) {
+	if(token != nil) {
 		// Add it to the array
-		CFArrayAppendValue(tokens, token);
-		token_release(kCFAllocatorDefault, token);
+		[tokens addObject:token];
+		[token release];
 	}
 }
 
@@ -213,7 +167,7 @@ static void token_release(CFAllocatorRef allocator, const void *value) {
 - (void)dealloc
 {
 	[parser release];
-	CFRelease(tokens);
+	[tokens release];
 	if(buffer != NULL) free(buffer);
 	[generator release];
 	[super dealloc];

@@ -8,29 +8,28 @@
 
 #import "MustacheGenerator.h"
 #import "MustacheTemplate.h"
+#import "MustacheToken.h"
 
 @implementation MustacheGenerator
 
-- (NSString *)stringWithContentsOfToken:(const mustache_token_t *)token {
-	return [[[NSString alloc] initWithBytesNoCopy:token->content.text
-										   length:token->content.length
+- (NSString *)stringWithContentsOfToken:(MustacheToken *)token {
+	return [[[NSString alloc] initWithBytesNoCopy:token.content
+										   length:token.contentLength
 										 encoding:NSUTF8StringEncoding
 									 freeWhenDone:NO] autorelease];
 }
 
-- (NSString *)renderTokens:(CFArrayRef)tokens inContext:(id)context {
+- (NSString *)renderTokens:(NSArray *)tokens inContext:(id)context {
 	NSMutableString *result = [[NSMutableString alloc] init];
-	CFIndex count = CFArrayGetCount(tokens);
 	NSMutableArray *contextStack = [NSMutableArray array];
 
-	for(CFIndex i = 0; i < count; i++) {
+	for(MustacheToken *token in tokens) {
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-		const mustache_token_t *token = CFArrayGetValueAtIndex(tokens, i);
 		id value;
 		NSString *stringValue;
 
-		switch (token->type) {
+		switch (token.type) {
 			case mustache_token_type_static:
 				[result appendString:[self stringWithContentsOfToken:token]];
 				break;
