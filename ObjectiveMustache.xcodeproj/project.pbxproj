@@ -25,6 +25,8 @@
 		B1724476127C533B00E66602 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1724475127C533B00E66602 /* libxml2.2.dylib */; };
 		B17244DE127D012700E66602 /* MustacheToken.m in Sources */ = {isa = PBXBuildFile; fileRef = B17244DD127D012700E66602 /* MustacheToken.m */; };
 		B17244DF127D012700E66602 /* MustacheToken.m in Sources */ = {isa = PBXBuildFile; fileRef = B17244DD127D012700E66602 /* MustacheToken.m */; };
+		B1724513127D1E0300E66602 /* MustacheFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724512127D1E0300E66602 /* MustacheFragment.m */; };
+		B1724514127D1E0300E66602 /* MustacheFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724512127D1E0300E66602 /* MustacheFragment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -123,6 +125,8 @@
 		B1724475127C533B00E66602 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		B17244DC127D012700E66602 /* MustacheToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheToken.h; sourceTree = "<group>"; };
 		B17244DD127D012700E66602 /* MustacheToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheToken.m; sourceTree = "<group>"; };
+		B1724511127D1E0300E66602 /* MustacheFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheFragment.h; sourceTree = "<group>"; };
+		B1724512127D1E0300E66602 /* MustacheFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheFragment.m; sourceTree = "<group>"; };
 		C6859EA3029092ED04C91782 /* ObjectiveMustache.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ObjectiveMustache.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,6 +204,8 @@
 				B172442C127C3E0E00E66602 /* MustacheGenerator.m */,
 				B17244DC127D012700E66602 /* MustacheToken.h */,
 				B17244DD127D012700E66602 /* MustacheToken.m */,
+				B1724511127D1E0300E66602 /* MustacheFragment.h */,
+				B1724512127D1E0300E66602 /* MustacheFragment.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 				B172442E127C3E0E00E66602 /* MustacheGenerator.m in Sources */,
 				B1724474127C4D3F00E66602 /* NSString+HTML.m in Sources */,
 				B17244DF127D012700E66602 /* MustacheToken.m in Sources */,
+				B1724514127D1E0300E66602 /* MustacheFragment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +376,7 @@
 				B172442D127C3E0E00E66602 /* MustacheGenerator.m in Sources */,
 				B1724473127C4D3F00E66602 /* NSString+HTML.m in Sources */,
 				B17244DE127D012700E66602 /* MustacheToken.m in Sources */,
+				B1724513127D1E0300E66602 /* MustacheFragment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

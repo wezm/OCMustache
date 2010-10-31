@@ -34,62 +34,14 @@
 			return nil;
 		}
 
-		parser = [[MustacheParser alloc] initWithDelegate:self];
-		tokens = [[NSMutableArray alloc] init];
+		rootFragment = [[MustacheFragment alloc] initWithRootToken:nil];
+		parser = [[MustacheParser alloc] initWithDelegate:rootFragment];
 	}
 
 	return self;
 }
 
-#pragma mark Parser delegate methods
-
-- (void)addStaticText:(const char *)text ofLength:(size_t)length
-{
-	NSLog(@"Add static text");
-	MustacheToken *token = [[MustacheToken alloc] initWithType:mustache_token_type_static content:text contentLength:length];
-
-	// Add it to the array
-	[tokens addObject:token];
-	[token release];
-}
-
-- (void)addTag:(const char *)tag ofLength:(size_t)length withSigil:(char)sigil {
-	NSLog(@"Add tag");
-	MustacheToken *token = nil;
-
-	// Initialise the token
-	switch (sigil) {
-		case '#':
-			token = [[MustacheToken alloc] initWithType:mustache_token_type_section content:tag contentLength:length];
-			depth++;
-			break;
-		case '^':
-			token = [[MustacheToken alloc] initWithType:mustache_token_type_inverted content:tag contentLength:length];
-			depth++;
-			break;
-		case '/':
-			// End section
-			// TODO: check that it matches the last start section
-			depth--;
-			break;
-		case '!':
-			// Ignore comments
-			break;
-		case '{':
-		case '&':
-			token = [[MustacheToken alloc] initWithType:mustache_token_type_utag content:tag contentLength:length];
-			break;
-		default:
-			token = [[MustacheToken alloc] initWithType:mustache_token_type_etag content:tag contentLength:length];
-			break;
-	}
-
-	if(token != nil) {
-		// Add it to the array
-		[tokens addObject:token];
-		[token release];
-	}
-}
+#pragma mark Parser related stuff
 
 - (void)reset
 {
@@ -126,7 +78,7 @@
 }
 
 - (NSString *)renderInContext:(id)context {
-	return [[self generator] renderTokens:tokens inContext:context];
+	return [[self generator] renderFragment:rootFragment inContext:context];
 }
 
 - (MustacheGenerator *)generator {
@@ -167,7 +119,7 @@
 - (void)dealloc
 {
 	[parser release];
-	[tokens release];
+	[rootFragment release];
 	if(buffer != NULL) free(buffer);
 	[generator release];
 	[super dealloc];

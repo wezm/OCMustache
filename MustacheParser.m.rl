@@ -63,7 +63,7 @@
 		printf("Tag: ");
 		fwrite(PTR_TO(identifier_start), sizeof(char), LEN(identifier_start, fpc), stdout);
 		printf("\n");
-		[delegate addTag:PTR_TO(identifier_start) ofLength:LEN(identifier_start, fpc) withSigil:tag_type];
+		[self.delegate parser:self foundTag:PTR_TO(identifier_start) ofLength:LEN(identifier_start, fpc) withSigil:tag_type];
 	}
 
 	action write_static {
@@ -71,7 +71,7 @@
 		printf("Static text: ");
 		fwrite(PTR_TO(mark), sizeof(char), LEN(mark, fpc), stdout);
 		printf("\n");
-		[delegate addStaticText:PTR_TO(mark) ofLength:LEN(mark, fpc)];
+		[self.delegate parser:self foundText:PTR_TO(mark) ofLength:LEN(mark, fpc)];
 	}
 
 	action set_type {
@@ -120,6 +120,8 @@
 %% write data;
 
 @implementation MustacheParser
+
+@synthesize delegate;
 
 //int http_parser_init(http_parser *parser)  {
 - (id)initWithDelegate:(id <MustacheParserDelegate>)parserDelegate

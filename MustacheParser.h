@@ -20,6 +20,8 @@
 	id <MustacheParserDelegate>delegate;
 }
 
+@property(nonatomic, assign) id <MustacheParserDelegate> delegate;
+
 - (id)initWithDelegate:(id <MustacheParserDelegate>)parserDelegate;
 - (size_t)execute:(const char *)buffer length:(size_t)len offset:(size_t)off;
 - (int)finish;
@@ -31,7 +33,7 @@
 
 @protocol MustacheParserDelegate
 
-- (void)addStaticText:(const char *)text ofLength:(size_t)length;
-- (void)addTag:(const char *)tag ofLength:(size_t)length withSigil:(char)sigil;
+- (void)parser:(MustacheParser *)parser foundText:(const char *)text ofLength:(size_t)length;
+- (void)parser:(MustacheParser *)parser foundTag:(const char *)tag ofLength:(size_t)length withSigil:(char)sigil;
 
 @end

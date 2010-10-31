@@ -10,13 +10,13 @@
 
 #import "MustacheParser.h"
 #import "MustacheGenerator.h"
+#import "MustacheFragment.h"
 
-@interface MustacheTemplate : NSObject <MustacheParserDelegate> {
+@interface MustacheTemplate : NSObject {
 	char *buffer;
 	MustacheParser *parser;
 	NSError *error;
-	NSUInteger depth;
-	NSMutableArray *tokens;
+	MustacheFragment *rootFragment;
 	MustacheGenerator *generator;
 }
 
