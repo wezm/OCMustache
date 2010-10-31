@@ -3,7 +3,7 @@
 //  ObjectiveMustache
 //
 //  Created by Wesley Moore on 20/08/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 parser. All rights reserved.
 //
 
 #import "MustacheTemplate.h"
@@ -45,11 +45,6 @@
 
 - (void)reset
 {
-	//	http_parser *http = NULL;
-	//	DATA_GET(self, http_parser, http);
-	//	http_parser_init(http);
-	//
-	//	return Qnil;
 }
 
 

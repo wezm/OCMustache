@@ -180,10 +180,4 @@
 	return nread;
 }
 
-//- (void)dealloc
-//{
-//	[delegate release];
-//	[super dealloc];
-//}
-
 @end

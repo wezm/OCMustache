@@ -3,7 +3,7 @@
 //  ObjectiveMustache
 //
 //  Created by Wesley Moore on 29/10/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 parser. All rights reserved.
 //
 
 #import <Cedar/SpecHelper.h>
@@ -12,12 +12,6 @@
 SPEC_BEGIN(MustacheTemplateSpec)
 describe(@"MustacheTemplate", ^{
 	__block MustacheTemplate *template;
-
-//    beforeEach(^{
-//    });
-//
-//	afterEach(^{
-//	});
 
     it(@"should read all input", ^{
 		NSString *templateText = @"Hello {{name}}\n"
@@ -32,7 +26,6 @@ describe(@"MustacheTemplate", ^{
 
 		[template release];
     });
-
 
     it(@"renders the template", ^{
 		NSString *templateText = @"Hello {{name}}\n"
@@ -90,7 +83,5 @@ describe(@"MustacheTemplate", ^{
 
 		[template release];
     });
-
-
 });
 SPEC_END
