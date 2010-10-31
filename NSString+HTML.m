@@ -59,9 +59,9 @@
 
 @implementation NSString (MustacheHTMLAdditions)
 
-// Kind of abusing libxml a bit here since we don't pass a doc and don't call
-// the library initialisation function. I checked the code (2.7.7) though and
-// it seems ok to use it this way.
+/* Lots of code but it was already written and runs about 4 times faster
+   than calling stringByReplacingOccurrencesOfString repeatedly. Also
+   probably more memory efficient. */
 - (NSString *)stringByEncodingEntities {
 	if([self length] == 0) return self;
 
