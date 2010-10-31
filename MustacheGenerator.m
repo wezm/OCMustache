@@ -12,8 +12,8 @@
 
 @interface MustacheGenerator (Private)
 
-- (NSString *)handleToken:(MustacheToken *)token inContext:(id)context;
-- (NSString *)handleFragment:(MustacheFragment *)fragment inContext:(id)context;
+- (NSString *)renderToken:(MustacheToken *)token inContext:(id)context;
+- (NSString *)renderChildFragment:(MustacheFragment *)fragment inContext:(id)context;
 
 @end
 
@@ -34,10 +34,10 @@
 
 		NSString *value = nil;
 		if([node isKindOfClass:[MustacheFragment class]]) {
-			value = [self handleFragment:node inContext:context];
+			value = [self renderChildFragment:node inContext:context];
 		}
 		else {
-			value = [self handleToken:node inContext:context];
+			value = [self renderToken:node inContext:context];
 		}
 
 		if(value != nil) {
@@ -50,7 +50,7 @@
 	return [result autorelease];
 }
 
-- (NSString *)handleToken:(MustacheToken *)token inContext:(id)context {
+- (NSString *)renderToken:(MustacheToken *)token inContext:(id)context {
 	id value;
 	NSString *stringValue;
 
@@ -89,7 +89,7 @@
 	return nil;
 }
 
-- (NSString *)handleFragment:(MustacheFragment *)fragment inContext:(id)context {
+- (NSString *)renderChildFragment:(MustacheFragment *)fragment inContext:(id)context {
 	id value;
 	MustacheToken *token = [fragment rootToken];
 
