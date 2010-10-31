@@ -65,5 +65,34 @@ describe(@"MustacheTemplate", ^{
 
 		[template release];
     });
+
+    it(@"renders templates with list values", ^{
+		NSString *templateText = @"List:\n"
+		@"{{#list}}\n"
+		@"* {{item}}\n"
+		@"{{/list}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		[template parse];
+
+		NSArray *items = [NSArray arrayWithObjects:@"one", @"two", @"three", nil];
+		NSMutableArray *list = [NSMutableArray arrayWithCapacity:[items count]];
+		for(id item in items) {
+			[list addObject:[NSDictionary dictionaryWithObject:item forKey:@"item"]];
+		}
+		NSDictionary *context = [NSDictionary dictionaryWithObject:list forKey:@"list"];
+		NSString *expected = @"List:\n"
+		@"* one\n"
+		@"* two\n"
+		@"* three\n";
+
+		NSString *result = [template renderInContext:context];
+		NSLog(@"%@", result);
+
+		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
+
+		[template release];
+    });
+
+
 });
 SPEC_END

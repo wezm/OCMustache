@@ -21,6 +21,7 @@
 - (NSString *)renderTokens:(CFArrayRef)tokens inContext:(id)context {
 	NSMutableString *result = [[NSMutableString alloc] init];
 	CFIndex count = CFArrayGetCount(tokens);
+	NSMutableArray *contextStack = [NSMutableArray array];
 
 	for(CFIndex i = 0; i < count; i++) {
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -77,7 +78,7 @@
 						// A true value, render the section in this context
 						NSLog(@"Render section (true)");
 					}
-					else if(0) { // a block/lambda
+					else if(0) { // a block/lambda TODO: Decide how to test for this
 						// Call the block with the section text
 						NSLog(@"Call block");
 					}
@@ -94,9 +95,14 @@
 							value = [NSArray arrayWithObject:value];
 						}
 
+						[contextStack addObject:context]; // Push
 						for(id obj in value) {
+							context = obj;
 							NSLog(@"Render %@", obj);
+							// call render tokens again, limiting to a certain depth
 						}
+						context = [contextStack lastObject]; // Pop
+						[contextStack removeLastObject];
 					}
 				}
 				break;
