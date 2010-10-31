@@ -75,7 +75,7 @@
 	}
 
 	action set_type {
-		tag_type = *fpc;
+		tag_type = fc;
 	}
 
 	action init_type {
@@ -96,7 +96,7 @@
 	# Special case for triple mustache
 	unescaped = (
 		open
-		'{'
+		'{' $set_type
 		white
 		identifier >start_identifier %got_identifier
 		white
@@ -108,8 +108,8 @@
 
 	body = (
 		var
-		| text
 		| unescaped
+		| text
 	);
 
 	main := body* %eof(write_static);
