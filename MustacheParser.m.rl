@@ -14,43 +14,12 @@
 
 	machine mustache_parser;
 
-	# Line endings
-	newline = ( "\r" | "\r\n" | "\n" );
-
 	# Character classes
-	white = [ \t]*;
 	open  = '{' :> '{';
 	close = '}' :> '}';
-
-	# Action
-    # # After these types of tags, all whitespace will be skipped.
-    # SKIP_WHITESPACE = [ '#', '^', '/' ]
-    #
-    # # The content allowed in a tag name.
-    # ALLOWED_CONTENT = /(\w|[?!\/-])*/
-    #
-    # # These types of tags allow any content,
-    # # the rest only allow ALLOWED_CONTENT.
-    # ANY_CONTENT = [ '!', '=' ]
-
-	identifier = ( alnum | [?!/_] | '-')+;
-	# [a-zA-Z_0-9?!/]*;
-	# /(\w|[?!\/-])*/;
-
-	# Tags
-	#type  = [#^/=<>&{];
-
-	# var     = ( open white identifier white close );
-	#
-	# enum    = ( open '#' white identifier white close );
-	#
-	# inverted = ( open '^' white identifier white close );
-	#
-	# end_enum = ( open '/' white identifier white close );
-	#
-	# comment = ( open '!' (any* -- close) close );
-
-	#body = ( comment | var | enum | nl );
+	identifier = ( alnum | [?!_] | '-')+;
+	simple_type = [=!<>&];
+	section_type = [#^/];
 
 	action mark { MARK(mark, fpc); }
 
@@ -82,33 +51,42 @@
 		tag_type = ' ';
 	}
 
-	type = [#^/=!<>&];
-
 	var = (
 		open
-		type? >init_type $set_type <: # Need to add error for unknown type
-		white
+		simple_type? >init_type $set_type <: # Need to add error for unknown type
+		space*
 		identifier >start_identifier %got_identifier
-		white
+		space*
 		close %mark # Need to skip whitespace for section tags
+	) >write_static;
+
+	section = (
+		open
+		section_type $set_type# Need to add error for unknown type
+		space*
+		identifier >start_identifier %got_identifier
+		space*
+		close
+		space* %mark # Skip trailing whitespace
 	) >write_static;
 
 	# Special case for triple mustache
 	unescaped = (
 		open
 		'{' $set_type
-		white
+		space*
 		identifier >start_identifier %got_identifier
-		white
+		space*
 		'}'
 		close %mark
 	) >write_static;
 
-	text = (any+ -- open) ;
+	text = (any+ -- open);
 
 	body = (
 		var
 		| unescaped
+		| section
 		| text
 	);
 
@@ -143,7 +121,7 @@
 {
   const char *p, *pe, *eof;
   //int cs = parser->cs;
-  char tag_type = '\0';
+  char tag_type = ' ';
 
   assert(off <= len && "offset past end of buffer");
 

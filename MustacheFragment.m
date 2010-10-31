@@ -30,8 +30,7 @@
 
 #pragma mark Parser delegate methods
 
-- (void)parser:(MustacheParser *)parser foundText:(const char *)text ofLength:(size_t)length
-{
+- (void)parser:(MustacheParser *)parser foundText:(const char *)text ofLength:(size_t)length {
 	NSLog(@"Add static text");
 	MustacheToken *token = [[MustacheToken alloc] initWithType:mustache_token_type_static content:text contentLength:length];
 	

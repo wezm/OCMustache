@@ -53,9 +53,7 @@ describe(@"MustacheTemplate", ^{
 								 @"<small>Fine print</small>", @"small", nil];
 		NSString *expected = @"Hello Name &lt; Test\n"
 		@"You have just won $3000!\n"
-		@"\n"
 		@"Well, $2400, <em>after</em> taxes.\n"
-		@"\n"
 		@"<small>Fine print</small>";
 
 		NSString *result = [template renderInContext:context];
