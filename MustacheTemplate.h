@@ -16,7 +16,8 @@ enum mustache_token_type {
 	mustache_token_type_utag, // Unescaped tag
 	mustache_token_type_section,
 	mustache_token_type_inverted,
-	mustache_token_type_static // Static text
+	mustache_token_type_static, // Static text
+	mustache_token_type_partial
 };
 
 typedef struct _mustache_string {
