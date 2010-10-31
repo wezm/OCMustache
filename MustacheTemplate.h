@@ -1,6 +1,6 @@
 //
 //  MustacheParser.h
-//  ObjectiveMustache
+//  OCMustache
 //
 //  Created by Wesley Moore on 20/08/10.
 //  Copyright 2010 Wesley Moore. All rights reserved.

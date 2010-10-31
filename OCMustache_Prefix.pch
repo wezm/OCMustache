@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'ObjectiveMustache' target in the 'ObjectiveMustache' project.
+// Prefix header for all source files of the 'OCMustache' target in the 'OCMustache' project.
 //
 
 #ifdef __OBJC__

@@ -1,6 +1,6 @@
 //
 //  NSString+HTML.m
-//  ObjectiveMustache
+//  OCMustache
 //
 //  Created by Wesley Moore on 30/10/10.
 //
