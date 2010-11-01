@@ -41,34 +41,11 @@
 	return self;
 }
 
-#pragma mark Parser related stuff
-
-- (void)reset
+- (BOOL)parseReturningError:(NSError **)error
 {
-}
+	[parser parseBytes:buffer length:strlen(buffer) error:error];
 
-
-- (BOOL)finish
-{
-	[parser finish];
-	return [parser isFinished];
-}
-
-
-- (BOOL)parse
-{
-	[parser execute:buffer length:strlen(buffer) offset:0];
-
-	// TODO: This will raise an exception if the test fails, should be NSError
-	if([parser hasError])
-	{
-		// TODO: Set error as below
-		//[self setError:[NSError errorWithDomain:WebErrorDomain code:HttpParserInvalidRequest userInfo:nil]];
-		NSLog(@"parser hasError");
-		return NO;
-	}
-
-	return YES;
+	return ![parser hasError];
 }
 
 - (NSString *)renderInContext:(id)context {
@@ -81,33 +58,6 @@
 	}
 
 	return generator;
-}
-
-- (void)setError:(NSError *)new_error
-{
-	if(error != nil) [error release];
-	error = [new_error retain];
-}
-
-- (NSError *)parserError
-{
-	return error != nil ? [error retain] : nil;
-}
-
-
-- (BOOL)isFinished
-{
-	return [parser isFinished];
-}
-
-- (BOOL)hasError
-{
-	return [parser hasError];
-}
-
-- (size_t)bytesRead
-{
-	return [parser bytesRead];
 }
 
 - (void)dealloc

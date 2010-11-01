@@ -109,7 +109,7 @@
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* OCMustache_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMustache_Prefix.pch; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* OCMustache */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OCMustache; sourceTree = BUILT_PRODUCTS_DIR; };
-		B159E13F121E626D00517E46 /* MustacheParser.m.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MustacheParser.m.rl; sourceTree = "<group>"; };
+		B159E13F121E626D00517E46 /* MustacheParser.m.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MustacheParser.m.rl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B159E140121E631A00517E46 /* MustacheParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheParser.h; sourceTree = "<group>"; };
 		B159E141121E63A800517E46 /* MustacheTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheTemplate.h; sourceTree = "<group>"; };
 		B159E142121E63A800517E46 /* MustacheTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheTemplate.m; sourceTree = "<group>"; };
@@ -192,8 +192,8 @@
 		B159E13B121E617000517E46 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B159E13F121E626D00517E46 /* MustacheParser.m.rl */,
 				B159E140121E631A00517E46 /* MustacheParser.h */,
+				B159E13F121E626D00517E46 /* MustacheParser.m.rl */,
 				B159E141121E63A800517E46 /* MustacheTemplate.h */,
 				B159E142121E63A800517E46 /* MustacheTemplate.m */,
 				B172442B127C3E0E00E66602 /* MustacheGenerator.h */,
