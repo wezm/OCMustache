@@ -72,12 +72,13 @@ describe(@"MustacheTemplate", ^{
 
 	it(@"reports errors", ^{
 		NSError *error = nil;
-		NSString *templateText = @"List: {{*invalid}}";
+		NSString *templateText = @"Invalid: {{*invalid}}";
 		template = [[MustacheTemplate alloc] initWithString:templateText];
 		BOOL result = [template parseReturningError:&error];
 
 		NSAssert(result == NO, @"indicates parsing failed");
 		NSAssert(error != nil, @"sets the error variable");
+		NSAssert([[error localizedDescription] hasPrefix:@"Error at character"], @"provides a description of the error");
 
 		[template release];
 	});
