@@ -10,7 +10,7 @@
 #import "MustacheTemplate.h"
 
 SPEC_BEGIN(MustacheTemplateSpec)
-describe(@"MustacheTemplate", ^{
+describe(@"MustacheTemplate rendering", ^{
 	__block MustacheTemplate *template;
 
     it(@"renders the template", ^{
@@ -137,6 +137,10 @@ describe(@"MustacheTemplate", ^{
 
 		[template release];
     });
+});
+
+describe(@"MustacheTemplate error handling", ^{
+	__block MustacheTemplate *template;
 
 	it(@"reports errors", ^{
 		NSError *error = nil;
