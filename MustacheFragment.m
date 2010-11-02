@@ -69,14 +69,21 @@
 			break;
 		case '/':
 			// End section
-			// TODO: check that it matches the last start section
 			if(self.rootToken != nil) {
-
-				[self.parent parsingWithParser:parser didEndFragment:self];
+				// Compare the tag name
+				if((self.rootToken.contentLength != length) || (memcmp(self.rootToken.content, tag, length) != 0)) {
+					// End tag does not match open tag
+					NSString *closingTag = [[NSString alloc] initWithBytesNoCopy:tag length:length encoding:NSUTF8StringEncoding freeWhenDone:NO];
+					NSString *localizedDescription = [NSString stringWithFormat:@"closing tag '%@' does not match opening tag '%@'", closingTag, [self.rootToken contentString]];
+					[closingTag release];
+					NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedDescription forKey:NSLocalizedDescriptionKey];
+					[parser abortWithError:[NSError errorWithDomain:@"OCMustacheErrorDomain" code:2 userInfo:userInfo]];
+				} else {
+					[self.parent parsingWithParser:parser didEndFragment:self];
+				}
 			}
 			else {
 				// Ending a section that isn't open
-				NSLog(@"Error: Ending a section that isn't open");
 				NSString *localizedDescription = [NSString stringWithFormat:@"closing unopened section '%@'", [token contentString]];
 				NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedDescription forKey:NSLocalizedDescriptionKey];
 				[parser abortWithError:[NSError errorWithDomain:@"OCMustacheErrorDomain" code:2 userInfo:userInfo]];

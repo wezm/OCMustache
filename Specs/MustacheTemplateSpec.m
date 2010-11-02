@@ -95,5 +95,19 @@ describe(@"MustacheTemplate", ^{
 
 		[template release];
 	});
+
+	it(@"reports an error when a section is closed out of order", ^{
+		NSError *error = nil;
+		NSString *templateText = @"{{#section}}{{/invalid}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		BOOL result = [template parseReturningError:&error];
+
+		NSAssert(result == NO, @"indicates parsing failed");
+		NSAssert(error != nil, @"sets the error variable");
+		NSLog(@"%@", [error localizedDescription]);
+		NSAssert([[error localizedDescription] compare:@"closing tag 'invalid' does not match opening tag 'section'"] == NSOrderedSame, @"provides a description of the error");
+
+		[template release];
+	});
 });
 SPEC_END
