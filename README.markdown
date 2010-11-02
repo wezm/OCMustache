@@ -15,11 +15,12 @@ Current State
 
 The code is still being worked on and the Mustache support is incomplete.
 
-The following still remains to be implemented:
+The following still remains to be implemented/tested:
 
 * Better error reporting/handling
 * Proc/lambda tags
-* Ensure iOS compatibility
+* iOS compatibility
+* Non-Apple platform support (GNUStep) on FreeBSD, Linux
 
 When the template language is fully implemented it is intended that a test
 runner be built to run the project against the [Mustache Spec][spec].
