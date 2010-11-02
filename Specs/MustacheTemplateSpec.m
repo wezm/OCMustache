@@ -36,9 +36,7 @@ describe(@"MustacheTemplate rendering", ^{
 		@"<small>Fine print</small>";
 
 		NSString *result = [template renderInContext:context];
-		NSLog(@"%@", result);
-
-		assert([expected compare:result] == NSOrderedSame && "result matches expected");
+		NSAssert([expected compare:result] == NSOrderedSame, "result matches expected");
 
 		[template release];
     });
@@ -63,8 +61,6 @@ describe(@"MustacheTemplate rendering", ^{
 		@"* three\n";
 
 		NSString *result = [template renderInContext:context];
-		NSLog(@"%@", result);
-
 		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
 
 		[template release];
@@ -87,8 +83,6 @@ describe(@"MustacheTemplate rendering", ^{
 		@"No items\n";
 
 		NSString *result = [template renderInContext:context];
-		NSLog(@"%@", result);
-
 		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
 
 		[template release];
@@ -109,8 +103,6 @@ describe(@"MustacheTemplate rendering", ^{
 		NSString *expected = @"No items\n";
 
 		NSString *result = [template renderInContext:context];
-		NSLog(@"%@", result);
-
 		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
 
 		[template release];
@@ -131,8 +123,6 @@ describe(@"MustacheTemplate rendering", ^{
 		NSString *expected = @"No items\n";
 
 		NSString *result = [template renderInContext:context];
-		NSLog(@"%@", result);
-
 		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
 
 		[template release];
@@ -147,8 +137,6 @@ describe(@"MustacheTemplate rendering", ^{
 		NSString *expected = @"Before after";
 
 		NSString *result = [template renderInContext:context];
-//		NSLog(@"%@", result);
-
 		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
 
 		[template release];
@@ -163,8 +151,6 @@ describe(@"MustacheTemplate rendering", ^{
 		NSString *expected = @"Before after";
 
 		NSString *result = [template renderInContext:context];
-		//		NSLog(@"%@", result);
-
 		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
 
 		[template release];
@@ -208,7 +194,6 @@ describe(@"MustacheTemplate error handling", ^{
 
 		NSAssert(result == NO, @"indicates parsing failed");
 		NSAssert(error != nil, @"sets the error variable");
-		NSLog(@"%@", [error localizedDescription]);
 		NSAssert([[error localizedDescription] compare:@"closing tag 'invalid' does not match opening tag 'section'"] == NSOrderedSame, @"provides a description of the error");
 
 		[template release];
