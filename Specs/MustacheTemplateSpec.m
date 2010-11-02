@@ -70,6 +70,74 @@ describe(@"MustacheTemplate", ^{
 		[template release];
     });
 
+    it(@"renders inverted sections when there are no item in a list", ^{
+		NSString *templateText = @"List:\n"
+		@"{{#list}}\n"
+		@"* {{item}}\n"
+		@"{{/list}}"
+		@"{{^list}}\n"
+		@"No items\n"
+		@"{{/list}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		[template parseReturningError:nil];
+
+		NSArray *list = [NSArray array];
+		NSDictionary *context = [NSDictionary dictionaryWithObject:list forKey:@"list"];
+		NSString *expected = @"List:\n"
+		@"No items\n";
+
+		NSString *result = [template renderInContext:context];
+		NSLog(@"%@", result);
+
+		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
+
+		[template release];
+    });
+
+    it(@"renders inverted sections when the key is nil", ^{
+		NSString *templateText = \
+		@"{{#list}}\n"
+		@"* {{item}}\n"
+		@"{{/list}}"
+		@"{{^list}}\n"
+		@"No items\n"
+		@"{{/list}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		[template parseReturningError:nil];
+
+		NSDictionary *context = [NSDictionary dictionary];
+		NSString *expected = @"No items\n";
+
+		NSString *result = [template renderInContext:context];
+		NSLog(@"%@", result);
+
+		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
+
+		[template release];
+    });
+
+    it(@"renders inverted sections when the key is false", ^{
+		NSString *templateText = \
+		@"{{#list}}\n"
+		@"* {{item}}\n"
+		@"{{/list}}"
+		@"{{^list}}\n"
+		@"No items\n"
+		@"{{/list}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		[template parseReturningError:nil];
+
+		NSDictionary *context = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"list"];
+		NSString *expected = @"No items\n";
+
+		NSString *result = [template renderInContext:context];
+		NSLog(@"%@", result);
+
+		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
+
+		[template release];
+    });
+
 	it(@"reports errors", ^{
 		NSError *error = nil;
 		NSString *templateText = @"Invalid: {{*invalid}}";

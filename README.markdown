@@ -19,7 +19,6 @@ The following still remains to be implemented:
 
 * Better error reporting/handling
 * Proc/lambda tags
-* Inverted section tags
 * Ensure iOS compatibility
 
 When the template language is fully implemented it is intended that a test

@@ -147,6 +147,17 @@
 				}
 			}
 			break;
+		case mustache_token_type_inverted:
+			value = [context valueForKey:[self stringWithContentsOfToken:token]];
+
+			// TODO: // Extract the first test so it can be shared with above
+			if(value == nil || ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO)) || ([value respondsToSelector:@selector(count)] && ([value count] == 0))) {
+				// A false value, render the section in this context
+				NSLog(@"Render section (true)");
+				return [self renderFragment:fragment inContext:context];
+			}
+
+			break;
 		default:
 			NSLog(@"Unknown token type");
 			break;

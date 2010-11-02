@@ -51,8 +51,9 @@
 
 	// Initialise the token
 	switch (sigil) {
+		case '^':
 		case '#':
-			token = [[MustacheToken alloc] initWithType:mustache_token_type_section content:tag contentLength:length];
+			token = [[MustacheToken alloc] initWithType:(sigil == '#' ? mustache_token_type_section : mustache_token_type_inverted) content:tag contentLength:length];
 			fragment = [[MustacheFragment alloc] initWithRootToken:token];
 			[token release];
 			token = nil; // for code at end of switch
@@ -61,11 +62,6 @@
 			parser.delegate = fragment;
 			[tokens addObject:fragment];
 			[fragment release];
-
-			// TODO: Tidy this up
-			break;
-		case '^':
-			token = [[MustacheToken alloc] initWithType:mustache_token_type_inverted content:tag contentLength:length];
 			break;
 		case '/':
 			// End section
