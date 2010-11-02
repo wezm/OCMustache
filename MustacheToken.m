@@ -22,4 +22,9 @@
 	return self;
 }
 
+- (NSString *)contentString
+{
+	return [[[NSString alloc] initWithBytes:self.content length:self.contentLength encoding:NSUTF8StringEncoding] autorelease];
+}
+
 @end

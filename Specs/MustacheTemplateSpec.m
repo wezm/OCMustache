@@ -82,5 +82,18 @@ describe(@"MustacheTemplate", ^{
 
 		[template release];
 	});
+
+	it(@"reports an error when a section is closed at the top level", ^{
+		NSError *error = nil;
+		NSString *templateText = @"Invalid: {{/invalid}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		BOOL result = [template parseReturningError:&error];
+
+		NSAssert(result == NO, @"indicates parsing failed");
+		NSAssert(error != nil, @"sets the error variable");
+		NSAssert([[error localizedDescription] hasPrefix:@"closing unopened section"], @"provides a description of the error");
+
+		[template release];
+	});
 });
 SPEC_END

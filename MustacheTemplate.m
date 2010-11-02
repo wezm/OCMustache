@@ -43,9 +43,13 @@
 
 - (BOOL)parseReturningError:(NSError **)error
 {
-	[parser parseBytes:buffer length:strlen(buffer) error:error];
+	[parser parseBytes:buffer length:strlen(buffer)];
 
-	return ![parser hasError];
+	if([parser isInErrorState] && error != nil) {
+		*error = parser.error;
+	}
+
+	return ![parser isInErrorState];
 }
 
 - (NSString *)renderInContext:(id)context {

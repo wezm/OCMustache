@@ -18,7 +18,7 @@
 		rootToken = [token retain];
 		tokens = [[NSMutableArray alloc] init];
 	}
-	
+
 	return self;
 }
 
@@ -32,8 +32,13 @@
 
 - (void)parser:(MustacheParser *)parser foundText:(const char *)text ofLength:(size_t)length {
 	NSLog(@"Add static text");
+	if([parser isInErrorState]) {
+		NSLog(@"Ignoring foundText in error state");
+		return;
+	}
+
 	MustacheToken *token = [[MustacheToken alloc] initWithType:mustache_token_type_static content:text contentLength:length];
-	
+
 	// Add it to the array
 	[tokens addObject:token];
 	[token release];
@@ -43,7 +48,7 @@
 	NSLog(@"Add tag");
 	MustacheToken *token = nil;
 	MustacheFragment *fragment  = nil;
-	
+
 	// Initialise the token
 	switch (sigil) {
 		case '#':
@@ -65,7 +70,17 @@
 		case '/':
 			// End section
 			// TODO: check that it matches the last start section
-			[self.parent parsingWithParser:parser didEndFragment:self];
+			if(self.rootToken != nil) {
+
+				[self.parent parsingWithParser:parser didEndFragment:self];
+			}
+			else {
+				// Ending a section that isn't open
+				NSLog(@"Error: Ending a section that isn't open");
+				NSString *localizedDescription = [NSString stringWithFormat:@"closing unopened section '%@'", [token contentString]];
+				NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedDescription forKey:NSLocalizedDescriptionKey];
+				[parser abortWithError:[NSError errorWithDomain:@"OCMustacheErrorDomain" code:2 userInfo:userInfo]];
+			}
 			break;
 		case '!':
 			// Ignore comments
@@ -78,7 +93,7 @@
 			token = [[MustacheToken alloc] initWithType:mustache_token_type_etag content:tag contentLength:length];
 			break;
 	}
-	
+
 	if(token != nil) {
 		// Add it to the array
 		[tokens addObject:token];

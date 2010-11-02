@@ -14,18 +14,22 @@
 @interface MustacheParser : NSObject {
 	int cs; // Ragel, current state
 
+	BOOL abort;
+	NSError *error;
 	NSUInteger nread;
 	const char * mark;
 	const char *identifier_start;
 	id <MustacheParserDelegate>delegate;
 }
 
+@property(readonly) NSError *error;
 @property(nonatomic, assign) id <MustacheParserDelegate> delegate;
 
 - (id)initWithDelegate:(id <MustacheParserDelegate>)parserDelegate;
-- (NSUInteger)parseBytes:(const char *)buffer length:(size_t)length error:(NSError **)error;
+- (NSUInteger)parseBytes:(const char *)buffer length:(size_t)length;
 - (void)abort;
-- (BOOL)hasError;
+- (void)abortWithError:(NSError *)error;
+- (BOOL)isInErrorState;
 - (BOOL)isFinished;
 - (NSUInteger)bytesRead;
 

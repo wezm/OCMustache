@@ -31,6 +31,7 @@
 		fwrite(identifier_start, sizeof(char), LEN(identifier_start, fpc), stdout);
 		printf("\n");
 		[self.delegate parser:self foundTag:identifier_start ofLength:LEN(identifier_start, fpc) withSigil:tag_type];
+		if(abort) { fhold; fgoto *mustache_parser_error; }
 	}
 
 	action write_static {
@@ -51,7 +52,7 @@
 
 	action set_error {
 		NSLog(@"Error at character %ld", LEN(buffer, fpc));
-		[self setError:error atIndex:LEN(buffer, fpc)];
+		[self setErrorAtIndex:LEN(buffer, fpc)];
 	}
 
 	var = (
@@ -102,13 +103,14 @@
 
 @interface MustacheParser (Internal)
 
-- (void)setError:(NSError **)error atIndex:(NSUInteger)index;
+- (void)setErrorAtIndex:(NSUInteger)index;
+- (void)setError:(NSError *)parseError;
 
 @end
 
 @implementation MustacheParser
 
-@synthesize delegate;
+@synthesize error, delegate;
 
 - (id)initWithDelegate:(id <MustacheParserDelegate>)parserDelegate
 {
@@ -122,7 +124,7 @@
 }
 
 
-- (NSUInteger)parseBytes:(const char *)buffer length:(size_t)length error:(NSError **)error
+- (NSUInteger)parseBytes:(const char *)buffer length:(size_t)length
 {
 	const char *p, *pe, *eof; // Ragel pointers
 	char tag_type = ' ';
@@ -140,12 +142,30 @@
 
 - (void)abort
 {
-	cs = %%{ write error; }%%;
+	abort = YES;
 }
 
-- (BOOL)hasError
+- (void)abortWithError:(NSError *)parseError
+{
+	[self abort];
+	[self setError:parseError];
+}
+
+- (BOOL)isInErrorState
 {
 	return cs == %%{ write error; }%% ? YES : NO;
+}
+
+- (NSError *)error
+{
+	return error;
+}
+
+- (void)setError:(NSError *)parseError
+{
+	if(parseError == error) return;
+	[error release];
+	error = [parseError retain];
 }
 
 - (BOOL)isFinished
@@ -158,13 +178,11 @@
 	return nread;
 }
 
-- (void)setError:(NSError **)error atIndex:(NSUInteger)index
+- (void)setErrorAtIndex:(NSUInteger)index
 {
-	if(error == nil) return;
-
 	NSString *localizedDescription = [NSString stringWithFormat:@"Error at character %ld", index];
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedDescription forKey:NSLocalizedDescriptionKey];
-	*error = [NSError errorWithDomain:@"MustacheParserErrorDomain" code:1 userInfo:userInfo];
+	[self setError:[NSError errorWithDomain:@"MustacheParserErrorDomain" code:1 userInfo:userInfo]];
 }
 
 @end
