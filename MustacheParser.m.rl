@@ -23,22 +23,15 @@
 
 	action start_identifier {
 		identifier_start = fpc;
-		printf("Start of %c tag\n", tag_type);
 	}
 
 	action got_identifier {
-		printf("Tag: ");
-		fwrite(identifier_start, sizeof(char), LEN(identifier_start, fpc), stdout);
-		printf("\n");
 		[self.delegate parser:self foundTag:identifier_start ofLength:LEN(identifier_start, fpc) withSigil:tag_type];
 		if(abort) { fhold; fgoto *mustache_parser_error; }
 	}
 
 	action write_static {
 		// Write out all the static text up to this tag
-		printf("Static text of Length %ld: ", LEN(mark, fpc));
-		fwrite(mark, sizeof(char), LEN(mark, fpc), stdout);
-		printf("\n");
 		[self.delegate parser:self foundText:mark ofLength:LEN(mark, fpc)];
 	}
 
@@ -51,7 +44,6 @@
 	}
 
 	action set_error {
-		NSLog(@"Error at character %ld", LEN(buffer, fpc));
 		[self setErrorAtIndex:LEN(buffer, fpc)];
 	}
 

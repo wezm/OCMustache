@@ -107,18 +107,15 @@
 
 			// First up skip if this thing is nil or false
 			if(value == nil || ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO))) {
-				// So here is where we skip all the tokens at the depth > depth
-				NSLog(@"nil or false, skip section");
+				// Do nothing
 			}
 			else {
 				if([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == YES)) {
 					// A true value, render the section in this context
-					NSLog(@"Render section (true)");
 					return [self renderFragment:fragment inContext:context];
 				}
 				else if(0) { // a block/lambda TODO: Decide how to test for this
-					// Call the block with the section text
-					NSLog(@"Call block");
+					// TODO: Call the block with the section text
 				}
 				else {
 					if([value conformsToProtocol:@protocol(NSFastEnumeration)]) {
@@ -136,8 +133,6 @@
 					NSMutableString *result = [NSMutableString string];
 					for(id obj in value) {
 						context = obj;
-						NSLog(@"Render %@", obj);
-						// call render tokens again, limiting to a certain depth
 						NSString *fragmentResult = [self renderFragment:fragment inContext:obj];
 						if(fragmentResult != nil) {
 							[result appendString:fragmentResult];
@@ -153,7 +148,6 @@
 			// TODO: // Extract the first test so it can be shared with above
 			if(value == nil || ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO)) || ([value respondsToSelector:@selector(count)] && ([value count] == 0))) {
 				// A false value, render the section in this context
-				NSLog(@"Render section (true)");
 				return [self renderFragment:fragment inContext:context];
 			}
 

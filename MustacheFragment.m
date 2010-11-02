@@ -31,7 +31,6 @@
 #pragma mark Parser delegate methods
 
 - (void)parser:(MustacheParser *)parser foundText:(const char *)text ofLength:(size_t)length {
-	NSLog(@"Add static text");
 	if([parser isInErrorState]) {
 		NSLog(@"Ignoring foundText in error state");
 		return;
@@ -45,7 +44,6 @@
 }
 
 - (void)parser:(MustacheParser *)parser foundTag:(const char *)tag ofLength:(size_t)length withSigil:(char)sigil {
-	NSLog(@"Add tag");
 	MustacheToken *token = nil;
 	MustacheFragment *fragment  = nil;
 
