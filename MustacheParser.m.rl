@@ -15,8 +15,8 @@
 	# Character classes
 	open  = '{' :> '{';
 	close = '}' :> '}';
-	identifier = ( alnum | [?!_] | '-')+;
-	simple_type = [=!<>&];
+	identifier = ( alnum | [?!_] | '-')+; # Identifier needs '/' for partials
+	simple_type = [=<>&];
 	section_type = [#^/];
 
 	action mark { mark = fpc; }
@@ -74,6 +74,14 @@
 		space* %mark # Skip trailing whitespace
 	) >write_static;
 
+	comment = (
+		open
+		'!' $set_type <:
+		(any* -- close) >start_identifier %got_identifier :>
+		close
+		space* %mark # Skip trailing whitespace
+	) >write_static;
+
 	# Special case for triple mustache
 	unescaped = (
 		open
@@ -91,6 +99,7 @@
 		var
 		| unescaped
 		| section
+		| comment
 		| text
 	);
 

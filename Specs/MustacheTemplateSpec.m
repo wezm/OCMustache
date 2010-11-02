@@ -153,6 +153,22 @@ describe(@"MustacheTemplate rendering", ^{
 
 		[template release];
     });
+
+    it(@"allows multi-line comments", ^{
+		NSString *templateText = @"Before {{! Comment\nthat spans several\nlines }}\nafter";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		[template parseReturningError:nil];
+
+		NSDictionary *context = [NSDictionary dictionary];
+		NSString *expected = @"Before after";
+
+		NSString *result = [template renderInContext:context];
+		//		NSLog(@"%@", result);
+
+		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
+
+		[template release];
+    });
 });
 
 describe(@"MustacheTemplate error handling", ^{
