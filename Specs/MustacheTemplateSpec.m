@@ -137,6 +137,22 @@ describe(@"MustacheTemplate rendering", ^{
 
 		[template release];
     });
+
+    it(@"does not render comments", ^{
+		NSString *templateText = @"Before {{! Comment }}after";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		[template parseReturningError:nil];
+
+		NSDictionary *context = [NSDictionary dictionary];
+		NSString *expected = @"Before after";
+
+		NSString *result = [template renderInContext:context];
+//		NSLog(@"%@", result);
+
+		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
+
+		[template release];
+    });
 });
 
 describe(@"MustacheTemplate error handling", ^{
