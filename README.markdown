@@ -24,6 +24,8 @@ The following still remains to be implemented:
 When the template language is fully implemented it is intended that a test
 runner be built to run the project against the [Mustache Spec][spec].
 
+[spec]: http://github.com/pvande/Mustache-Spec
+
 Note: Since it isn't possible to dynamically change the parser its unlikely that
 the set delimiter tag will ever be supported.
 
