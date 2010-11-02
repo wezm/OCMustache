@@ -36,7 +36,7 @@ describe(@"MustacheTemplate rendering", ^{
 		@"<small>Fine print</small>";
 
 		NSString *result = [template renderInContext:context];
-		NSAssert([expected compare:result] == NSOrderedSame, "result matches expected");
+		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
 
 		[template release];
     });
