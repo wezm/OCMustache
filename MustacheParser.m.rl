@@ -33,6 +33,9 @@
 	action write_static {
 		// Write out all the static text up to this tag
 		[self.delegate parser:self foundText:mark ofLength:LEN(mark, fpc)];
+
+		// Move the mark up to this point
+		mark =  fpc;
 	}
 
 	action init_type {
