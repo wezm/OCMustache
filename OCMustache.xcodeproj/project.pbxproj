@@ -13,9 +13,6 @@
 		B172414E127A636200E66602 /* MustacheParser.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParser.m.rl */; };
 		B1724185127A66D500E66602 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
 		B17241DA127A693E00E66602 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17241A1127A689B00E66602 /* Cedar.framework */; };
-		B17241DF127A698600E66602 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241DE127A698600E66602 /* main.m */; };
-		B17241E1127A69E600E66602 /* MustacheTemplateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */; };
-		B17241EE127A6A1700E66602 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241DE127A698600E66602 /* main.m */; };
 		B17241F9127A6AAB00E66602 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
 		B17241FA127A6AC100E66602 /* MustacheParser.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParser.m.rl */; };
 		B172442D127C3E0E00E66602 /* MustacheGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B172442C127C3E0E00E66602 /* MustacheGenerator.m */; };
@@ -26,6 +23,12 @@
 		B17244DF127D012700E66602 /* MustacheToken.m in Sources */ = {isa = PBXBuildFile; fileRef = B17244DD127D012700E66602 /* MustacheToken.m */; };
 		B1724513127D1E0300E66602 /* MustacheFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724512127D1E0300E66602 /* MustacheFragment.m */; };
 		B1724514127D1E0300E66602 /* MustacheFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724512127D1E0300E66602 /* MustacheFragment.m */; };
+		B172483F1280B16E00E66602 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241DE127A698600E66602 /* main.m */; };
+		B17248461280B27F00E66602 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241DE127A698600E66602 /* main.m */; };
+		B172484A1280B2C300E66602 /* MustacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B17248001280AD8700E66602 /* MustacheSpec.m */; };
+		B172484B1280B2C800E66602 /* MustacheTemplateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */; };
+		B172485E1280B36E00E66602 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17241A1127A689B00E66602 /* Cedar.framework */; };
+		B17248AC1280F2FD00E66602 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17248A51280F2E400E66602 /* YAML.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -58,36 +61,78 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = AEEE1FB611DC271300029872 /* Cedar.framework */;
+			remoteGlobalIDString = AEEE1FB611DC271300029872;
 			remoteInfo = Cedar;
 		};
 		B17241A2127A689B00E66602 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = AEEE218611DC28E200029872 /* Specs */;
+			remoteGlobalIDString = AEEE218611DC28E200029872;
 			remoteInfo = Specs;
 		};
 		B17241A4127A689B00E66602 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = AEEE222911DC2B0600029872 /* libCedar-StaticLib.a */;
+			remoteGlobalIDString = AEEE222911DC2B0600029872;
 			remoteInfo = "Cedar-StaticLib";
 		};
 		B17241A6127A689B00E66602 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = AEEE227611DC2CF900029872 /* iPhoneSpecs.app */;
+			remoteGlobalIDString = AEEE227611DC2CF900029872;
 			remoteInfo = iPhoneSpecs;
 		};
 		B17241D7127A690F00E66602 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = AEEE1FB511DC271300029872 /* Cedar */;
+			remoteGlobalIDString = AEEE1FB511DC271300029872;
 			remoteInfo = Cedar;
+		};
+		B172486B1280B45B00E66602 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AEEE1FB511DC271300029872;
+			remoteInfo = Cedar;
+		};
+		B17248A41280F2E400E66602 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = YAML;
+		};
+		B17248A61280F2E400E66602 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB6C420E124D99BE00886AD1;
+			remoteInfo = test;
+		};
+		B17248A81280F2E400E66602 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EBE745C1124F8C0D00618049;
+			remoteInfo = "test (spec12examples)";
+		};
+		B17248AA1280F2E400E66602 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB2B5928124E2100001FFEEB;
+			remoteInfo = events;
+		};
+		B17248AD1280F31100E66602 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = YAML;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -125,6 +170,9 @@
 		B17244DD127D012700E66602 /* MustacheToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheToken.m; sourceTree = "<group>"; };
 		B1724511127D1E0300E66602 /* MustacheFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheFragment.h; sourceTree = "<group>"; };
 		B1724512127D1E0300E66602 /* MustacheFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheFragment.m; sourceTree = "<group>"; };
+		B17247C2128053E300E66602 /* Mustache-Spec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Mustache-Spec"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B17248001280AD8700E66602 /* MustacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheSpec.m; sourceTree = "<group>"; };
+		B17248971280F2E400E66602 /* YAML.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YAML.xcodeproj; path = YAML/YAML.xcodeproj; sourceTree = "<group>"; };
 		C6859EA3029092ED04C91782 /* ObjectiveMustache.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ObjectiveMustache.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,15 +193,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B17247C0128053E300E66602 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B17248AC1280F2FD00E66602 /* YAML.framework in Frameworks */,
+				B172485E1280B36E00E66602 /* Cedar.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		08FB7794FE84155DC02AAC07 /* ObjectiveMustache */ = {
 			isa = PBXGroup;
 			children = (
+				B17248971280F2E400E66602 /* YAML.xcodeproj */,
+				B1724191127A689B00E66602 /* Cedar.xcodeproj */,
 				B1724470127C4D2A00E66602 /* Categories */,
 				B17241DD127A695900E66602 /* Specs */,
-				B1724191127A689B00E66602 /* Cedar.xcodeproj */,
 				B159E13B121E617000517E46 /* Classes */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6859EA2029092E104C91782 /* Documentation */,
@@ -185,6 +243,7 @@
 			children = (
 				8DD76FA10486AA7600D96B5E /* OCMustache */,
 				B17241D3127A690700E66602 /* Specs */,
+				B17247C2128053E300E66602 /* Mustache-Spec */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,6 +281,7 @@
 			children = (
 				B17241DE127A698600E66602 /* main.m */,
 				B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */,
+				B17248001280AD8700E66602 /* MustacheSpec.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -233,6 +293,17 @@
 				B1724472127C4D3F00E66602 /* NSString+HTML.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		B17248981280F2E400E66602 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B17248A51280F2E400E66602 /* YAML.framework */,
+				B17248A71280F2E400E66602 /* test */,
+				B17248A91280F2E400E66602 /* test */,
+				B17248AB1280F2E400E66602 /* events */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		C6859EA2029092E104C91782 /* Documentation */ = {
@@ -283,6 +354,24 @@
 			productReference = B17241D3127A690700E66602 /* Specs */;
 			productType = "com.apple.product-type.tool";
 		};
+		B17247C1128053E300E66602 /* Mustache-Spec */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B17247CA1280543800E66602 /* Build configuration list for PBXNativeTarget "Mustache-Spec" */;
+			buildPhases = (
+				B17247BF128053E300E66602 /* Sources */,
+				B17247C0128053E300E66602 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B172486C1280B45B00E66602 /* PBXTargetDependency */,
+				B17248AE1280F31100E66602 /* PBXTargetDependency */,
+			);
+			name = "Mustache-Spec";
+			productName = "Mustache-Spec";
+			productReference = B17247C2128053E300E66602 /* Mustache-Spec */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -305,11 +394,16 @@
 					ProductGroup = B1724192127A689B00E66602 /* Products */;
 					ProjectRef = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
 				},
+				{
+					ProductGroup = B17248981280F2E400E66602 /* Products */;
+					ProjectRef = B17248971280F2E400E66602 /* YAML.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
 				8DD76F960486AA7600D96B5E /* OCMustache */,
 				B17241D2127A690700E66602 /* Specs */,
+				B17247C1128053E300E66602 /* Mustache-Spec */,
 			);
 		};
 /* End PBXProject section */
@@ -343,6 +437,34 @@
 			remoteRef = B17241A6127A689B00E66602 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B17248A51280F2E400E66602 /* YAML.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = YAML.framework;
+			remoteRef = B17248A41280F2E400E66602 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B17248A71280F2E400E66602 /* test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = test;
+			remoteRef = B17248A61280F2E400E66602 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B17248A91280F2E400E66602 /* test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = test;
+			remoteRef = B17248A81280F2E400E66602 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B17248AB1280F2E400E66602 /* events */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = events;
+			remoteRef = B17248AA1280F2E400E66602 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -353,7 +475,6 @@
 				B172414E127A636200E66602 /* MustacheParser.m.rl in Sources */,
 				8DD76F9A0486AA7600D96B5E /* ObjectiveMustache.m in Sources */,
 				B1724185127A66D500E66602 /* MustacheTemplate.m in Sources */,
-				B17241DF127A698600E66602 /* main.m in Sources */,
 				B172442E127C3E0E00E66602 /* MustacheGenerator.m in Sources */,
 				B1724474127C4D3F00E66602 /* NSString+HTML.m in Sources */,
 				B17244DF127D012700E66602 /* MustacheToken.m in Sources */,
@@ -365,14 +486,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17241E1127A69E600E66602 /* MustacheTemplateSpec.m in Sources */,
 				B17241FA127A6AC100E66602 /* MustacheParser.m.rl in Sources */,
-				B17241EE127A6A1700E66602 /* main.m in Sources */,
 				B17241F9127A6AAB00E66602 /* MustacheTemplate.m in Sources */,
 				B172442D127C3E0E00E66602 /* MustacheGenerator.m in Sources */,
 				B1724473127C4D3F00E66602 /* NSString+HTML.m in Sources */,
 				B17244DE127D012700E66602 /* MustacheToken.m in Sources */,
 				B1724513127D1E0300E66602 /* MustacheFragment.m in Sources */,
+				B172483F1280B16E00E66602 /* main.m in Sources */,
+				B172484B1280B2C800E66602 /* MustacheTemplateSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B17247BF128053E300E66602 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B17248461280B27F00E66602 /* main.m in Sources */,
+				B172484A1280B2C300E66602 /* MustacheSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +513,16 @@
 			isa = PBXTargetDependency;
 			name = Cedar;
 			targetProxy = B17241D7127A690F00E66602 /* PBXContainerItemProxy */;
+		};
+		B172486C1280B45B00E66602 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Cedar;
+			targetProxy = B172486B1280B45B00E66602 /* PBXContainerItemProxy */;
+		};
+		B17248AE1280F31100E66602 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YAML;
+			targetProxy = B17248AD1280F31100E66602 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -490,6 +630,52 @@
 			};
 			name = Release;
 		};
+		B17247C4128053E400E66602 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OCMustache_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Mustache-Spec";
+			};
+			name = Debug;
+		};
+		B17247C5128053E400E66602 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OCMustache_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Mustache-Spec";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -516,6 +702,15 @@
 			buildConfigurations = (
 				B17241D5127A690700E66602 /* Debug */,
 				B17241D6127A690700E66602 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B17247CA1280543800E66602 /* Build configuration list for PBXNativeTarget "Mustache-Spec" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B17247C4128053E400E66602 /* Debug */,
+				B17247C5128053E400E66602 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

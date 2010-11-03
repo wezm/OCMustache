@@ -1,3 +1,9 @@
 [submodule "cedar"]
 	path = cedar
 	url = http://github.com/pivotal/cedar.git
+[submodule "YAML"]
+	path = YAML
+	url = http://github.com/mirek/YAML.framework.git
+[submodule "Mustache-Spec"]
+	path = Mustache-Spec
+	url = http://github.com/pvande/Mustache-Spec.git
