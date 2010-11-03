@@ -84,7 +84,7 @@
 
 						NSString *expected = [test objectForKey:@"expected"];
 						NSString *result = [t renderInContext:[test objectForKey:@"data"]];
-						NSAssert2([expected compare:result] == NSOrderedSame, @"expected %@ got %@", expected, result);
+						NSAssert2([expected compare:result] == NSOrderedSame, @"expected '%@' got '%@'", expected, result);
 
 						[t release];
 					});
