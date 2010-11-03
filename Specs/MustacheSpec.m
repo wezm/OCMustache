@@ -8,10 +8,11 @@
 
 #import <Cedar/SpecHelper.h>
 #import <YAML/YAMLSerialization.h>
+#import "MustacheTemplate.h"
 
 @interface MustacheSpec : CDRSpec
 {
-	NSMutableArray *jsonTests;
+	NSMutableArray *testSuiteUrls;
 }
 
 @end
@@ -22,62 +23,80 @@
 	if((self = [super init]) != nil) {
 		// Find the specs
 		NSFileManager *fileManager = [NSFileManager defaultManager];
-		// Assumes pwd is the project root, which has been set on the executable
+		// Assumes pwd is the project root, which has been set on the "Mustache-Spec" executable
 		NSURL *specsDir = [NSURL fileURLWithPath:@"Mustache-Spec/specs" isDirectory:YES];
-		NSArray *properties = [NSArray arrayWithObject:NSURLNameKey];
 		NSUInteger options =    NSDirectoryEnumerationSkipsSubdirectoryDescendants |
 			NSDirectoryEnumerationSkipsPackageDescendants |
 			NSDirectoryEnumerationSkipsHiddenFiles;
-		NSDirectoryEnumerator *dir = [fileManager enumeratorAtURL:specsDir includingPropertiesForKeys:properties options:options errorHandler:nil];
+		NSDirectoryEnumerator *dir = [fileManager enumeratorAtURL:specsDir includingPropertiesForKeys:nil options:options errorHandler:nil];
 
 		NSLog(@"Looking for specs in %@", specsDir);
-		jsonTests = [[NSMutableArray alloc] init];
+		testSuiteUrls = [[NSMutableArray alloc] init];
 		for (NSURL *url in dir) {
-			NSLog(@"%@", url);
 			if([[url pathExtension] compare:@"yml"] == NSOrderedSame) {
-				[jsonTests addObject:url];
+				[testSuiteUrls addObject:url];
 			}
 		}
-		
-//		NSData *JSONData = [NSData dataWithContentsOfFile:@"example.json"];
-//		jsonTests = [JSONData yajl_JSON];
 	}
-		 
+
 	return self;
 }
 
 - (void)dealloc {
-	[jsonTests release];
+	[testSuiteUrls release];
 	[super dealloc];
 }
 
 - (void)declareBehaviors {
-	
-	// Loop over the jsonTests and build the test suite.
-	// A describe call for each test whose name is built from the filename and the JSON
-	for(NSURL *suiteUrl in jsonTests) {
+	// These suites aren't expected to pass
+	NSSet *pendingTestSuites = [NSSet setWithObjects:@"partials", @"delimiters", @"lambdas", nil];
+
+	// Load the tests in each YAML test suite file
+	for(NSURL *suiteUrl in testSuiteUrls) {
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-		NSInputStream *stream = [[[NSInputStream alloc] initWithURL:suiteUrl] autorelease];
+		NSInputStream *stream = [[NSInputStream alloc] initWithURL:suiteUrl];
 		NSError *error = nil;
-		NSArray *yamlDocs = [YAMLSerialization YAMLWithStream:stream
-													  options:kYAMLReadOptionStringScalars
-														error:&error];
-		NSLog(@"%@", yamlDocs);
-		
+		id lastDoc = [[YAMLSerialization YAMLWithStream:stream
+												options:kYAMLReadOptionStringScalars
+												  error:&error] lastObject];
+		[stream release];
+		NSAssert([lastDoc isKindOfClass:[NSDictionary class]], @"Test suite is not a dictionary");
+		NSDictionary *suite = lastDoc;
+		NSArray *tests = [suite objectForKey:@"tests"];
+		NSString *suiteName = [[suiteUrl lastPathComponent] stringByDeletingPathExtension];
+
+		describe(suiteName, ^{
+			for(NSDictionary *test in tests) {
+				NSString *testDesc = [NSString stringWithFormat:@"%@ - %@", [test objectForKey:@"desc"], [test objectForKey:@"name"]];
+				if([pendingTestSuites containsObject:suiteName]) {
+					// Create a pending test
+					it(testDesc, PENDING);
+				}
+				else {
+					it(testDesc, ^{
+						// TODO: Do what's necessary for the partials
+						//NSDictionary *partials = [test objectForKey:@"partials"];
+
+						NSError *parseError = nil;
+						MustacheTemplate *t = [[MustacheTemplate alloc] initWithString:[test objectForKey:@"template"]];
+						NSAssert([t parseReturningError:&parseError] == YES, @"parses sucessfully");
+
+						NSString *expected = [test objectForKey:@"expected"];
+						NSString *result = [t renderInContext:[test objectForKey:@"data"]];
+						NSAssert2([expected compare:result] == NSOrderedSame, @"expected %@ got %@", expected, result);
+
+						[t release];
+					});
+				}
+			}
+
+		});
+
+
 		[pool drain];
 	}
-	
+
 }
 
 @end
-//
-//SPEC_BEGIN(MustacheSpec)
-//describe(@"MustacheSpec", ^{
-//	
-//	beforeEach(<#CDRSpecBlock block#>);
-//	
-//	afterEach(<#CDRSpecBlock block#>);
-//	
-//});
-//SPEC_END

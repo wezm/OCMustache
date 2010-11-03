@@ -10,6 +10,11 @@
 		8DD76F9A0486AA7600D96B5E /* ObjectiveMustache.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* ObjectiveMustache.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* ObjectiveMustache.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* ObjectiveMustache.1 */; };
+		B11D8683128137F8007D9C01 /* MustacheFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724512127D1E0300E66602 /* MustacheFragment.m */; };
+		B11D8684128137FA007D9C01 /* MustacheGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B172442C127C3E0E00E66602 /* MustacheGenerator.m */; };
+		B11D8685128137FB007D9C01 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
+		B11D8686128137FC007D9C01 /* MustacheToken.m in Sources */ = {isa = PBXBuildFile; fileRef = B17244DD127D012700E66602 /* MustacheToken.m */; };
+		B11D868712813807007D9C01 /* MustacheParser.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParser.m.rl */; };
 		B172414E127A636200E66602 /* MustacheParser.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParser.m.rl */; };
 		B1724185127A66D500E66602 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
 		B17241DA127A693E00E66602 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17241A1127A689B00E66602 /* Cedar.framework */; };
@@ -29,9 +34,21 @@
 		B172484B1280B2C800E66602 /* MustacheTemplateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */; };
 		B172485E1280B36E00E66602 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17241A1127A689B00E66602 /* Cedar.framework */; };
 		B17248AC1280F2FD00E66602 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17248A51280F2E400E66602 /* YAML.framework */; };
+		B1BBF7F512813A7C00D26E72 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724472127C4D3F00E66602 /* NSString+HTML.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
+		B11D868E12813863007D9C01 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.m.rl";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE)",
+			);
+			script = "/opt/local/bin/ragel -G2 -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE} ${INPUT_FILE_PATH}";
+		};
 		B1724140127A628E00E66602 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
@@ -362,6 +379,7 @@
 				B17247C0128053E300E66602 /* Frameworks */,
 			);
 			buildRules = (
+				B11D868E12813863007D9C01 /* PBXBuildRule */,
 			);
 			dependencies = (
 				B172486C1280B45B00E66602 /* PBXTargetDependency */,
@@ -501,8 +519,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B11D868712813807007D9C01 /* MustacheParser.m.rl in Sources */,
 				B17248461280B27F00E66602 /* main.m in Sources */,
 				B172484A1280B2C300E66602 /* MustacheSpec.m in Sources */,
+				B11D8683128137F8007D9C01 /* MustacheFragment.m in Sources */,
+				B11D8684128137FA007D9C01 /* MustacheGenerator.m in Sources */,
+				B11D8685128137FB007D9C01 /* MustacheTemplate.m in Sources */,
+				B11D8686128137FC007D9C01 /* MustacheToken.m in Sources */,
+				B1BBF7F512813A7C00D26E72 /* NSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
