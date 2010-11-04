@@ -155,6 +155,20 @@ describe(@"MustacheTemplate rendering", ^{
 
 		[template release];
     });
+
+	it(@"renders partials when specified with >", ^{
+		NSString *templateText = @"|{{> gtpartial}}|";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		[template parseReturningError:nil];
+
+		NSDictionary *context = [NSDictionary dictionary];
+		NSString *expected = @"|partial|";
+
+		NSString *result = [template renderInContext:context];
+		NSAssert2([expected compare:result] == NSOrderedSame, @"expected '%@' got '%@'", expected, result);
+
+		[template release];
+	});
 });
 
 describe(@"MustacheTemplate error handling", ^{

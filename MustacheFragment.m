@@ -90,8 +90,15 @@
 		case '&':
 			token = [[MustacheToken alloc] initWithType:mustache_token_type_utag content:tag contentLength:length];
 			break;
-		default:
+		case '<':
+		case '>':
+			token = [[MustacheToken alloc] initWithType:mustache_token_type_partial content:tag contentLength:length];
+			break;
+		case ' ':
 			token = [[MustacheToken alloc] initWithType:mustache_token_type_etag content:tag contentLength:length];
+			break;
+		default:
+			NSLog(@"Unknown tag type '%c' encountered", sigil);
 			break;
 	}
 

@@ -82,7 +82,7 @@
 			return stringValue;
 			break;
 		default:
-			NSLog(@"Unknown token type");
+			NSLog(@"Unknown token type '%c'", token.type);
 			break;
 	}
 
@@ -153,7 +153,7 @@
 
 			break;
 		default:
-			NSLog(@"Unknown token type");
+			NSLog(@"Unknown token type '%c'", token.type);
 			break;
 	}
 
