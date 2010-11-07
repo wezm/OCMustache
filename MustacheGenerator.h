@@ -10,8 +10,12 @@
 #import "MustacheFragment.h"
 
 @interface MustacheGenerator : NSObject {
+	MustacheTemplate *template;
 }
 
-- (NSString *)renderFragment:(MustacheFragment *)fragment inContext:(id)context;
+- (id)initWithTemplate:(MustacheTemplate *)aTemplate;
+
+// Renders the assigned template in the given context
+- (NSString *)renderInContext:(id)context;
 
 @end

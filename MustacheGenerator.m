@@ -13,17 +13,33 @@
 @interface MustacheGenerator (Private)
 
 - (NSString *)renderToken:(MustacheToken *)token inContext:(id)context;
+- (NSString *)renderPartialToken:(MustacheToken *)token inContext:(id)context;
 - (NSString *)renderChildFragment:(MustacheFragment *)fragment inContext:(id)context;
+- (NSString *)renderFragment:(MustacheFragment *)fragment inContext:(id)context;
 
 @end
 
 @implementation MustacheGenerator
+
+- (id)initWithTemplate:(MustacheTemplate *)aTemplate
+{
+	if((self = [super init]) != nil) {
+		template = aTemplate;
+	}
+
+	return self;
+}
 
 - (NSString *)stringWithContentsOfToken:(MustacheToken *)token {
 	return [[[NSString alloc] initWithBytesNoCopy:token.content
 										   length:token.contentLength
 										 encoding:NSUTF8StringEncoding
 									 freeWhenDone:NO] autorelease];
+}
+
+- (NSString *)renderInContext:(id)context
+{
+	return [self renderFragment:template.rootFragment inContext:context];
 }
 
 - (NSString *)renderFragment:(MustacheFragment *)fragment inContext:(id)context {
@@ -81,8 +97,13 @@
 
 			return stringValue;
 			break;
+		case mustache_token_type_partial:
+			NSLog(@"Render partial");
+			return [self renderPartialToken:token inContext:context];
+			//[token contentString];
+			break;
 		default:
-			NSLog(@"Unknown token type '%c'", token.type);
+			NSLog(@"%@: Unknown token type '%c'", NSStringFromSelector(_cmd), token.type);
 			break;
 	}
 
@@ -153,11 +174,19 @@
 
 			break;
 		default:
-			NSLog(@"Unknown token type '%c'", token.type);
+			NSLog(@"%@ Unknown token type '%c'", NSStringFromSelector(_cmd), token.type);
 			break;
 	}
 
 	return nil;
+}
+
+- (NSString *)renderPartialToken:(MustacheToken *)token inContext:(id)context
+{
+	MustacheFragment *partial = [template partialWithName:[token contentString]];
+	NSAssert1(partial != nil, @"Partial with name %@ was nil", [token contentString]);
+
+	return [self renderFragment:partial inContext:context];
 }
 
 @end

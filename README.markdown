@@ -26,7 +26,6 @@ The following still remains to be implemented/tested:
 
 * Better error reporting/handling
 * Proc/lambda tags
-* Partials
 * iOS compatibility
 * Non-Apple platform support (GNUStep) on FreeBSD, Linux
 

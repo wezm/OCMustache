@@ -9,6 +9,28 @@
 #import <Cedar/SpecHelper.h>
 #import "MustacheTemplate.h"
 
+@interface DictionaryPartialLoader : NSObject <MustachePartialLoader> {
+}
+
++ (DictionaryPartialLoader *)loader;
+
+@end
+
+@implementation DictionaryPartialLoader
+
++ (DictionaryPartialLoader *)loader
+{
+	return [[[DictionaryPartialLoader alloc] init] autorelease];
+}
+
+- (NSString *)partialWithName:(NSString *)name error:(NSError **)error
+{
+	return @"partial";
+}
+
+@end
+
+
 SPEC_BEGIN(MustacheTemplateSpec)
 describe(@"MustacheTemplate rendering", ^{
 	__block MustacheTemplate *template;
@@ -159,6 +181,7 @@ describe(@"MustacheTemplate rendering", ^{
 	it(@"renders partials when specified with >", ^{
 		NSString *templateText = @"|{{> gtpartial}}|";
 		template = [[MustacheTemplate alloc] initWithString:templateText];
+		template.partialLoader = [DictionaryPartialLoader loader];
 		[template parseReturningError:nil];
 
 		NSDictionary *context = [NSDictionary dictionary];
