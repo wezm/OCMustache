@@ -120,7 +120,7 @@
 {
 	if((self = [super init]) != nil)
 	{
-		%% write init;
+		[self reset];
 		delegate = parserDelegate;
 	}
 
@@ -147,6 +147,11 @@
 - (void)abort
 {
 	abort = YES;
+}
+
+- (void)reset
+{
+	%% write init;
 }
 
 - (void)abortWithError:(NSError *)parseError

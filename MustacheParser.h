@@ -28,6 +28,7 @@
 - (id)initWithDelegate:(id <MustacheParserDelegate>)parserDelegate;
 - (NSUInteger)parseBytes:(const char *)buffer length:(size_t)length;
 - (void)abort;
+- (void)reset;
 - (void)abortWithError:(NSError *)error;
 - (BOOL)isInErrorState;
 - (BOOL)isFinished;
