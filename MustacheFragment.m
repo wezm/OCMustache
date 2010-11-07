@@ -7,11 +7,11 @@
 //
 
 #import "MustacheFragment.h"
-#import "MustacheToken.h"
+#import "MustacheTemplate.h"
 
 @implementation MustacheFragment
 
-@synthesize parent, rootToken, tokens;
+@synthesize template, parent, rootToken, tokens;
 
 - (id)initWithRootToken:(MustacheToken *)token {
 	if((self = [super init]) != nil) {
@@ -57,6 +57,7 @@
 			token = nil; // for code at end of switch
 
 			fragment.parent = self;
+			fragment.template = self.template;
 			parser.delegate = fragment;
 			[tokens addObject:fragment];
 			[fragment release];
@@ -93,6 +94,7 @@
 		case '<':
 		case '>':
 			token = [[MustacheToken alloc] initWithType:mustache_token_type_partial content:tag contentLength:length];
+			[self.template addPartial:token];
 			break;
 		case ' ':
 			token = [[MustacheToken alloc] initWithType:mustache_token_type_etag content:tag contentLength:length];

@@ -10,14 +10,18 @@
 #import "MustacheParser.h"
 #import "MustacheToken.h"
 
+@class MustacheTemplate;
+
 @protocol MustacheFragmentDelegate;
 
 @interface MustacheFragment : NSObject <MustacheParserDelegate> {
+	MustacheTemplate *template;
 	MustacheFragment *parent;
 	MustacheToken *rootToken;
 	NSMutableArray *tokens;
 }
 
+@property(nonatomic, assign) MustacheTemplate *template;
 @property(nonatomic, assign) MustacheFragment *parent;
 @property(readonly) MustacheToken *rootToken;
 @property(readonly) NSArray *tokens;
