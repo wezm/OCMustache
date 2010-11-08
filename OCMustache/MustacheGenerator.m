@@ -9,6 +9,7 @@
 #import "MustacheGenerator.h"
 #import "MustacheTemplate.h"
 #import "MustacheToken.h"
+#import "NSString+HTML.h"
 
 @interface MustacheGenerator (Private)
 
