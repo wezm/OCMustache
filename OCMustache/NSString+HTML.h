@@ -6,7 +6,7 @@
 //  Copyright 2010 Wesley Moore. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 
 @interface NSString (MustacheHTMLAdditions)
