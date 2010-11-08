@@ -6,16 +6,11 @@
 //  Copyright 2010 Wesley Moore. All rights reserved.
 //
 
-#import <Cedar/SpecHelper.h>
 #import <YAML/YAMLSerialization.h>
+
+#import "MustacheSpec.h"
 #import "MustacheTemplate.h"
-
-@interface MustacheSpec : CDRSpec
-{
-	NSMutableArray *testSuiteUrls;
-}
-
-@end
+#import "MustacheSpecPartialLoader.h"
 
 @implementation MustacheSpec
 
@@ -49,7 +44,7 @@
 
 - (void)declareBehaviors {
 	// These suites aren't expected to pass
-	NSSet *pendingTestSuites = [NSSet setWithObjects:@"partials", @"delimiters", @"lambdas", nil];
+	NSSet *pendingTestSuites = [NSSet setWithObjects:@"delimiters", @"lambdas", nil];
 
 	// Load the tests in each YAML test suite file
 	for(NSURL *suiteUrl in testSuiteUrls) {
@@ -75,12 +70,14 @@
 				}
 				else {
 					it(testDesc, ^{
-						// TODO: Do what's necessary for the partials
-						//NSDictionary *partials = [test objectForKey:@"partials"];
+						MustacheSpecPartialLoader *partialLoader = [[MustacheSpecPartialLoader alloc] init];
+						partialLoader.partials = [test objectForKey:@"partials"];
 
 						NSError *parseError = nil;
 						MustacheTemplate *t = [[MustacheTemplate alloc] initWithString:[test objectForKey:@"template"]];
+						t.partialLoader = partialLoader;
 						NSAssert([t parseReturningError:&parseError] == YES, @"parses sucessfully");
+						[partialLoader release];
 
 						NSString *expected = [test objectForKey:@"expected"];
 						NSString *result = [t renderInContext:[test objectForKey:@"data"]];

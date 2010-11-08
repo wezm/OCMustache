@@ -15,6 +15,7 @@
 		B11D8685128137FB007D9C01 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
 		B11D8686128137FC007D9C01 /* MustacheToken.m in Sources */ = {isa = PBXBuildFile; fileRef = B17244DD127D012700E66602 /* MustacheToken.m */; };
 		B11D868712813807007D9C01 /* MustacheParser.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParser.m.rl */; };
+		B170532D12874D2E005A3215 /* MustacheSpecPartialLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B170532C12874D2E005A3215 /* MustacheSpecPartialLoader.m */; };
 		B172414E127A636200E66602 /* MustacheParser.m.rl in Sources */ = {isa = PBXBuildFile; fileRef = B159E13F121E626D00517E46 /* MustacheParser.m.rl */; };
 		B1724185127A66D500E66602 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
 		B17241DA127A693E00E66602 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17241A1127A689B00E66602 /* Cedar.framework */; };
@@ -178,6 +179,9 @@
 		B159E140121E631A00517E46 /* MustacheParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheParser.h; sourceTree = "<group>"; };
 		B159E141121E63A800517E46 /* MustacheTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheTemplate.h; sourceTree = "<group>"; };
 		B159E142121E63A800517E46 /* MustacheTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheTemplate.m; sourceTree = "<group>"; };
+		B170532B12874D2E005A3215 /* MustacheSpecPartialLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheSpecPartialLoader.h; sourceTree = "<group>"; };
+		B170532C12874D2E005A3215 /* MustacheSpecPartialLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheSpecPartialLoader.m; sourceTree = "<group>"; };
+		B170533412874E74005A3215 /* MustacheSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheSpec.h; sourceTree = "<group>"; };
 		B1724191127A689B00E66602 /* Cedar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cedar.xcodeproj; path = cedar/Cedar.xcodeproj; sourceTree = "<group>"; };
 		B17241D3127A690700E66602 /* Specs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Specs; sourceTree = BUILT_PRODUCTS_DIR; };
 		B17241DE127A698600E66602 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -307,7 +311,10 @@
 			children = (
 				B17241DE127A698600E66602 /* main.m */,
 				B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */,
+				B170533412874E74005A3215 /* MustacheSpec.h */,
 				B17248001280AD8700E66602 /* MustacheSpec.m */,
+				B170532B12874D2E005A3215 /* MustacheSpecPartialLoader.h */,
+				B170532C12874D2E005A3215 /* MustacheSpecPartialLoader.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -539,6 +546,7 @@
 				B11D8686128137FC007D9C01 /* MustacheToken.m in Sources */,
 				B1BBF7F512813A7C00D26E72 /* NSString+HTML.m in Sources */,
 				B1BBF884128290FD00D26E72 /* MustacheFilePartialLoader.m in Sources */,
+				B170532D12874D2E005A3215 /* MustacheSpecPartialLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
