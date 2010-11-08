@@ -30,7 +30,7 @@
 
 #pragma mark Parser delegate methods
 
-- (void)parser:(MustacheParser *)parser foundText:(const char *)text ofLength:(size_t)length {
+- (void)parser:(MustacheParser *)parser foundText:(const char *)text ofLength:(NSUInteger)length {
 	if([parser isInErrorState]) {
 		NSLog(@"Ignoring foundText in error state");
 		return;
@@ -43,7 +43,7 @@
 	[token release];
 }
 
-- (void)parser:(MustacheParser *)parser foundTag:(const char *)tag ofLength:(size_t)length withSigil:(char)sigil {
+- (void)parser:(MustacheParser *)parser foundTag:(const char *)tag ofLength:(NSUInteger)length withSigil:(char)sigil {
 	MustacheToken *token = nil;
 	MustacheFragment *fragment  = nil;
 
