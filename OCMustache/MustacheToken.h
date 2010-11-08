@@ -25,7 +25,7 @@ enum mustache_token_type {
 
 @property(nonatomic, assign) enum mustache_token_type type;
 @property(nonatomic, assign) const char *content;
-@property(nonatomic, assign) size_t contentLength;
+@property(nonatomic, assign) NSUInteger contentLength;
 
 - (id)initWithType:(enum mustache_token_type)token_type content:(const char *)content contentLength:(NSUInteger)length;
 - (NSString *)contentString;
