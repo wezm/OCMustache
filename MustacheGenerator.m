@@ -98,9 +98,7 @@
 			return stringValue;
 			break;
 		case mustache_token_type_partial:
-			NSLog(@"Render partial");
 			return [self renderPartialToken:token inContext:context];
-			//[token contentString];
 			break;
 		default:
 			NSLog(@"%@: Unknown token type '%c'", NSStringFromSelector(_cmd), token.type);
