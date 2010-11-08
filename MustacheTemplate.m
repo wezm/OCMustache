@@ -86,27 +86,33 @@
 		return;
 	}
 
+	// Check if this partial has been already been loaded
+	if([partials objectForKey:partialName] == nil) {
+		// Parse the partial
+		MustacheFragment *partialFragment = [[MustacheFragment alloc] initWithRootToken:nil];
+		partialFragment.template = self;
 
-	// Parse the partial
-	MustacheFragment *partialFragment = [[MustacheFragment alloc] initWithRootToken:nil];
-	partialFragment.template = self;
+		//	[parser reset];
+		MustacheParser *partialParser = [[MustacheParser alloc] initWithDelegate:partialFragment];
+		//	parser.delegate = partialFragment;
 
-//	[parser reset];
-	MustacheParser *partialParser = [[MustacheParser alloc] initWithDelegate:partialFragment];
-//	parser.delegate = partialFragment;
+		// TODO: This whole store the data and fragment bit feels wrong and messy
+		// The fragment is added to the list prior to parsing so that if the
+		// partial is recursive the guard on the above if statement actually
+		// prevents an infinite loop.
+		NSData *data = [partialString dataUsingEncoding:NSUTF8StringEncoding];
+		[partialData addObject:data];
+		[partials setObject:partialFragment forKey:partialName];
+		[partialParser parseBytes:[data bytes] length:[data length]];
 
-	NSData *data = [partialString dataUsingEncoding:NSUTF8StringEncoding];
-	[partialData addObject:data];
-	[partialParser parseBytes:[data bytes] length:[data length]];
+		if([partialParser isInErrorState]) {
+			// TODO: Create a new error that wraps the partial parser one.
+			[parser abortWithError:partialParser.error];
+			return;
+		}
 
-	if([partialParser isInErrorState]) {
-		// TODO: Create a new error that wraps the partial parser one.
-		[parser abortWithError:partialParser.error];
-		return;
+		[partialParser release];
 	}
-
-	[partialParser release];
-	[partials setObject:partialFragment forKey:partialName];
 }
 
 - (MustacheFragment *)partialWithName:(NSString *)name
