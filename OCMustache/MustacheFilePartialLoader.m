@@ -20,19 +20,13 @@
 - (id)initWithBaseURL:(NSURL *)url
 {
 	if((self = [super init]) != nil) {
-		baseUrl = [url retain];
+		baseUrl = url;
 		partials = [[NSMutableDictionary alloc] init];
 	}
 
 	return self;
 }
 
-- (void)dealloc
-{
-	[baseUrl release];
-	[partials release];
-	[super dealloc];
-}
 
 // TODO: Make this handle pre-loading the partials, returning an error at that time.
 

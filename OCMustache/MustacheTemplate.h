@@ -26,6 +26,8 @@
 @property(readonly) MustacheFragment *rootFragment;
 @property(nonatomic, retain) id <MustachePartialLoader> partialLoader;
 
+- (id)initWithString:(NSString *)templateString;
+
 - (BOOL)parseReturningError:(NSError **)error;
 - (NSString *)renderInContext:(id)context;
 

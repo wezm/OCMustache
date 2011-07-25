@@ -25,7 +25,7 @@
 - (NSString *)contentString
 {
 	// TODO: Cache this
-	return [[[NSString alloc] initWithBytes:self.content length:self.contentLength encoding:NSUTF8StringEncoding] autorelease];
+	return [[NSString alloc] initWithBytes:self.content length:self.contentLength encoding:NSUTF8StringEncoding];
 }
 
 @end

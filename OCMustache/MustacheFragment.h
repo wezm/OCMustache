@@ -15,8 +15,8 @@
 @protocol MustacheFragmentDelegate;
 
 @interface MustacheFragment : NSObject <MustacheParserDelegate> {
-	MustacheTemplate *template;
-	MustacheFragment *parent;
+	MustacheTemplate *__unsafe_unretained template;
+	MustacheFragment *__unsafe_unretained parent;
 	MustacheToken *rootToken;
 	NSMutableArray *tokens;
 }

@@ -15,18 +15,13 @@
 
 - (id)initWithRootToken:(MustacheToken *)token {
 	if((self = [super init]) != nil) {
-		rootToken = [token retain];
+		rootToken = token;
 		tokens = [[NSMutableArray alloc] init];
 	}
 
 	return self;
 }
 
-- (void)dealloc {
-	[rootToken release];
-	[tokens release];
-	[super dealloc];
-}
 
 #pragma mark Parser delegate methods
 
@@ -40,7 +35,6 @@
 
 	// Add it to the array
 	[tokens addObject:token];
-	[token release];
 }
 
 - (void)parser:(MustacheParser *)parser foundTag:(const char *)tag ofLength:(NSUInteger)length withSigil:(char)sigil {
@@ -53,14 +47,12 @@
 		case '#':
 			token = [[MustacheToken alloc] initWithType:(sigil == '#' ? mustache_token_type_section : mustache_token_type_inverted) content:tag contentLength:length];
 			fragment = [[MustacheFragment alloc] initWithRootToken:token];
-			[token release];
 			token = nil; // for code at end of switch
 
 			fragment.parent = self;
 			fragment.template = self.template;
 			parser.delegate = fragment;
 			[tokens addObject:fragment];
-			[fragment release];
 			break;
 		case '/':
 			// End section
@@ -70,7 +62,6 @@
 					// End tag does not match open tag
 					NSString *closingTag = [[NSString alloc] initWithBytesNoCopy:tag length:length encoding:NSUTF8StringEncoding freeWhenDone:NO];
 					NSString *localizedDescription = [NSString stringWithFormat:@"closing tag '%@' does not match opening tag '%@'", closingTag, [self.rootToken contentString]];
-					[closingTag release];
 					NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedDescription forKey:NSLocalizedDescriptionKey];
 					[parser abortWithError:[NSError errorWithDomain:@"OCMustacheErrorDomain" code:2 userInfo:userInfo]];
 				} else {
@@ -107,7 +98,6 @@
 	if(token != nil) {
 		// Add it to the array
 		[tokens addObject:token];
-		[token release];
 	}
 }
 

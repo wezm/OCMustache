@@ -24,7 +24,7 @@
 {
 	if((self = [super init]) != nil)
 	{
-		buffer = [[templateString dataUsingEncoding:NSUTF8StringEncoding] retain];
+		buffer = [templateString dataUsingEncoding:NSUTF8StringEncoding];
 		rootFragment = [[MustacheFragment alloc] initWithRootToken:nil];
 		rootFragment.template = self;
 		parser = [[MustacheParser alloc] initWithDelegate:rootFragment];
@@ -111,7 +111,6 @@
 			return;
 		}
 
-		[partialParser release];
 	}
 }
 
@@ -120,16 +119,5 @@
 	return [partials objectForKey:name];
 }
 
-- (void)dealloc
-{
-	[parser release];
-	[rootFragment release];
-	[buffer release];
-	[generator release];
-	[partialLoader release];
-	[partials release];
-	[partialData release];
-	[super dealloc];
-}
 
 @end

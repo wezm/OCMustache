@@ -744,8 +744,7 @@ case 16:
 - (void)setError:(NSError *)parseError
 {
 	if(parseError == error) return;
-	[error release];
-	error = [parseError retain];
+	error = parseError;
 }
 
 - (BOOL)isFinished

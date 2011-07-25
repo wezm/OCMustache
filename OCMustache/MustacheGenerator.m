@@ -32,10 +32,10 @@
 }
 
 - (NSString *)stringWithContentsOfToken:(MustacheToken *)token {
-	return [[[NSString alloc] initWithBytesNoCopy:token.content
+	return [[NSString alloc] initWithBytesNoCopy:token.content
 										   length:token.contentLength
 										 encoding:NSUTF8StringEncoding
-									 freeWhenDone:NO] autorelease];
+									 freeWhenDone:NO];
 }
 
 - (NSString *)renderInContext:(id)context
@@ -47,24 +47,24 @@
 	NSMutableString *result = [[NSMutableString alloc] init];
 
 	for(id node in fragment.tokens) {
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+		@autoreleasepool {
 
-		NSString *value = nil;
-		if([node isKindOfClass:[MustacheFragment class]]) {
-			value = [self renderChildFragment:node inContext:context];
-		}
-		else {
-			value = [self renderToken:node inContext:context];
-		}
+			NSString *value = nil;
+			if([node isKindOfClass:[MustacheFragment class]]) {
+				value = [self renderChildFragment:node inContext:context];
+			}
+			else {
+				value = [self renderToken:node inContext:context];
+			}
 
-		if(value != nil) {
-			[result appendString:value];
-		}
+			if(value != nil) {
+				[result appendString:value];
+			}
 
-		[pool drain];
+		}
 	}
 
-	return [result autorelease];
+	return result;
 }
 
 - (NSString *)renderToken:(MustacheToken *)token inContext:(id)context {

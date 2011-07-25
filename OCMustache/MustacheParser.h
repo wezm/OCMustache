@@ -19,7 +19,7 @@
 	NSUInteger nread;
 	const char * mark;
 	const char *identifier_start;
-	id <MustacheParserDelegate>delegate;
+	id <MustacheParserDelegate>__unsafe_unretained delegate;
 }
 
 @property(readonly) NSError *error;

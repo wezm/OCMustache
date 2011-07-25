@@ -153,7 +153,7 @@
 	}
 	*out = 0;
 
-	return [[[NSString alloc] initWithBytesNoCopy:buffer length:out - buffer encoding:NSUTF8StringEncoding freeWhenDone:YES] autorelease];
+	return [[NSString alloc] initWithBytesNoCopy:buffer length:out - buffer encoding:NSUTF8StringEncoding freeWhenDone:YES];
 }
 
 @end
