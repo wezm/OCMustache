@@ -23,8 +23,8 @@
 
 @property(nonatomic, assign) MustacheTemplate *template;
 @property(nonatomic, assign) MustacheFragment *parent;
-@property(readonly) MustacheToken *rootToken;
-@property(readonly) NSArray *tokens;
+@property(readonly, strong) MustacheToken *rootToken;
+@property(readonly, strong) NSArray *tokens;
 
 - (id)initWithRootToken:(MustacheToken *)token;
 - (void)parsingWithParser:(MustacheParser *)parser didEndFragment:(MustacheFragment *)fragment;

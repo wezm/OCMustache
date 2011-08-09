@@ -22,7 +22,7 @@
 	id <MustacheParserDelegate>__unsafe_unretained delegate;
 }
 
-@property(readonly) NSError *error;
+@property(readonly, strong) NSError *error;
 @property(nonatomic, assign) id <MustacheParserDelegate> delegate;
 
 - (id)initWithDelegate:(id <MustacheParserDelegate>)parserDelegate;

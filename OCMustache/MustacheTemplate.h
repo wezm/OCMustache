@@ -23,7 +23,7 @@
 	NSMutableArray *partialData;
 }
 
-@property(readonly) MustacheFragment *rootFragment;
+@property(readonly, strong) MustacheFragment *rootFragment;
 @property(nonatomic, retain) id <MustachePartialLoader> partialLoader;
 
 - (id)initWithString:(NSString *)templateString;
