@@ -29,6 +29,14 @@
 		B1BBF7F512813A7C00D26E72 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724472127C4D3F00E66602 /* NSString+HTML.m */; };
 		B1BBF884128290FD00D26E72 /* MustacheFilePartialLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BBF883128290FD00D26E72 /* MustacheFilePartialLoader.m */; };
 		B1BBF886128290FD00D26E72 /* MustacheFilePartialLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BBF883128290FD00D26E72 /* MustacheFilePartialLoader.m */; };
+		B1F6DDFF13F2323A00EB304B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F6DDFE13F2323A00EB304B /* Foundation.framework */; };
+		B1F6DE0A13F2325400EB304B /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724472127C4D3F00E66602 /* NSString+HTML.m */; };
+		B1F6DE0B13F2325400EB304B /* MustacheParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B17053A61287F52A005A3215 /* MustacheParser.m */; };
+		B1F6DE0C13F2325400EB304B /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
+		B1F6DE0D13F2325400EB304B /* MustacheGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B172442C127C3E0E00E66602 /* MustacheGenerator.m */; };
+		B1F6DE0E13F2325400EB304B /* MustacheToken.m in Sources */ = {isa = PBXBuildFile; fileRef = B17244DD127D012700E66602 /* MustacheToken.m */; };
+		B1F6DE0F13F2325400EB304B /* MustacheFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724512127D1E0300E66602 /* MustacheFragment.m */; };
+		B1F6DE1013F2325400EB304B /* MustacheFilePartialLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BBF883128290FD00D26E72 /* MustacheFilePartialLoader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -165,6 +173,11 @@
 		B1BBF882128290FD00D26E72 /* MustacheFilePartialLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MustacheFilePartialLoader.h; path = OCMustache/MustacheFilePartialLoader.h; sourceTree = "<group>"; };
 		B1BBF883128290FD00D26E72 /* MustacheFilePartialLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MustacheFilePartialLoader.m; path = OCMustache/MustacheFilePartialLoader.m; sourceTree = "<group>"; };
 		B1BBF88912834D7300D26E72 /* MustachePartialLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MustachePartialLoader.h; path = OCMustache/MustachePartialLoader.h; sourceTree = "<group>"; };
+		B1F6DDFC13F2323A00EB304B /* libOCMustache.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOCMustache.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1F6DDFE13F2323A00EB304B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B1F6DE0213F2323A00EB304B /* OCMustache-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCMustache-Prefix.pch"; sourceTree = "<group>"; };
+		B1F6DE0313F2323A00EB304B /* OCMustache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMustache.h; sourceTree = "<group>"; };
+		B1F6DE0413F2323A00EB304B /* OCMustache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCMustache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +198,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1F6DDF913F2323A00EB304B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1F6DDFF13F2323A00EB304B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -198,6 +219,8 @@
 				08FB7795FE84155DC02AAC07 /* Source */,
 				B17241DD127A695900E66602 /* Specs */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
+				B1F6DE0013F2323A00EB304B /* OCMustache */,
+				B1F6DDFD13F2323A00EB304B /* Frameworks */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
 			);
 			name = ObjectiveMustache;
@@ -225,6 +248,7 @@
 			children = (
 				B17241D3127A690700E66602 /* Specs */,
 				B17247C2128053E300E66602 /* Mustache-Spec */,
+				B1F6DDFC13F2323A00EB304B /* libOCMustache.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -293,7 +317,43 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B1F6DDFD13F2323A00EB304B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1F6DDFE13F2323A00EB304B /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1F6DE0013F2323A00EB304B /* OCMustache */ = {
+			isa = PBXGroup;
+			children = (
+				B1F6DE0313F2323A00EB304B /* OCMustache.h */,
+				B1F6DE0413F2323A00EB304B /* OCMustache.m */,
+				B1F6DE0113F2323A00EB304B /* Supporting Files */,
+			);
+			path = OCMustache;
+			sourceTree = "<group>";
+		};
+		B1F6DE0113F2323A00EB304B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B1F6DE0213F2323A00EB304B /* OCMustache-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B1F6DDFA13F2323A00EB304B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		B17241D2127A690700E66602 /* Specs */ = {
@@ -333,6 +393,23 @@
 			productReference = B17247C2128053E300E66602 /* Mustache-Spec */;
 			productType = "com.apple.product-type.tool";
 		};
+		B1F6DDFB13F2323A00EB304B /* OCMustache */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1F6DE0813F2323A00EB304B /* Build configuration list for PBXNativeTarget "OCMustache" */;
+			buildPhases = (
+				B1F6DDF813F2323A00EB304B /* Sources */,
+				B1F6DDF913F2323A00EB304B /* Frameworks */,
+				B1F6DDFA13F2323A00EB304B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OCMustache;
+			productName = OCMustache;
+			productReference = B1F6DDFC13F2323A00EB304B /* libOCMustache.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -364,6 +441,7 @@
 			targets = (
 				B17241D2127A690700E66602 /* Specs */,
 				B17247C1128053E300E66602 /* Mustache-Spec */,
+				B1F6DDFB13F2323A00EB304B /* OCMustache */,
 			);
 		};
 /* End PBXProject section */
@@ -458,6 +536,20 @@
 				B1BBF884128290FD00D26E72 /* MustacheFilePartialLoader.m in Sources */,
 				B170532D12874D2E005A3215 /* MustacheSpecPartialLoader.m in Sources */,
 				B17053A81287F52A005A3215 /* MustacheParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1F6DDF813F2323A00EB304B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1F6DE0A13F2325400EB304B /* NSString+HTML.m in Sources */,
+				B1F6DE0B13F2325400EB304B /* MustacheParser.m in Sources */,
+				B1F6DE0C13F2325400EB304B /* MustacheTemplate.m in Sources */,
+				B1F6DE0D13F2325400EB304B /* MustacheGenerator.m in Sources */,
+				B1F6DE0E13F2325400EB304B /* MustacheToken.m in Sources */,
+				B1F6DE0F13F2325400EB304B /* MustacheFragment.m in Sources */,
+				B1F6DE1013F2325400EB304B /* MustacheFilePartialLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +696,51 @@
 			};
 			name = Release;
 		};
+		B1F6DE0613F2323A00EB304B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/OCMustache.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OCMustache/OCMustache-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B1F6DE0713F2323A00EB304B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/OCMustache.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OCMustache/OCMustache-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -633,6 +770,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		B1F6DE0813F2323A00EB304B /* Build configuration list for PBXNativeTarget "OCMustache" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1F6DE0613F2323A00EB304B /* Debug */,
+				B1F6DE0713F2323A00EB304B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
