@@ -63,7 +63,10 @@ Current State
 
 The code is feature complete with the exception of lambda and delimiter tags.
 The code is a first cut and there is room for refactoring and improvement but
-it passes the tests and the bulk of the specs in Mustache-Spec.
+it passes the tests and the bulk of the specs in Mustache-Spec. The failing
+tests in Mustache-Spec are to do with whitespace and some false positives on
+the handling of sections and inverted sections due to limitations of the YAML
+library in use to load the specs.
 
 The following still remains to be completed:
 
