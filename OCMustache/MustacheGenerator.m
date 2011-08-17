@@ -167,7 +167,6 @@
 		case mustache_token_type_inverted:
 			value = [context valueForKey:[self stringWithContentsOfToken:token]];
 
-			// TODO: // Extract the first test so it can be shared with above
             if([self isFalsey:value] || ([value respondsToSelector:@selector(count)] && ([value count] == 0))) {
 				// A false value, render the section in this context
 				return [self renderFragment:fragment inContext:context];
@@ -196,11 +195,10 @@
         return YES;
     }
     else if ([value isKindOfClass:[NSString class]]) {
-        return [value length] == 0;
+        return ([value length] == 0);
     }
-    else if ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO))
-    {
-        return YES;
+    else if ([value respondsToSelector:@selector(boolValue)]) {
+        return ([value boolValue] == NO);
     }
 
     return NO;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B101038613FB6CFB00196345 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B101038513FB6CFB00196345 /* Cedar.framework */; };
+		B101038813FB6D0500196345 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B101038513FB6CFB00196345 /* Cedar.framework */; };
+		B101038A13FB6D0500196345 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B101038913FB6D0500196345 /* YAML.framework */; };
 		B11D8683128137F8007D9C01 /* MustacheFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724512127D1E0300E66602 /* MustacheFragment.m */; };
 		B11D8684128137FA007D9C01 /* MustacheGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B172442C127C3E0E00E66602 /* MustacheGenerator.m */; };
 		B11D8685128137FB007D9C01 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
@@ -14,7 +17,6 @@
 		B170532D12874D2E005A3215 /* MustacheSpecPartialLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B170532C12874D2E005A3215 /* MustacheSpecPartialLoader.m */; };
 		B17053A71287F52A005A3215 /* MustacheParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B17053A61287F52A005A3215 /* MustacheParser.m */; };
 		B17053A81287F52A005A3215 /* MustacheParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B17053A61287F52A005A3215 /* MustacheParser.m */; };
-		B17241DA127A693E00E66602 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17241A1127A689B00E66602 /* Cedar.framework */; };
 		B17241F9127A6AAB00E66602 /* MustacheTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = B159E142121E63A800517E46 /* MustacheTemplate.m */; };
 		B172442D127C3E0E00E66602 /* MustacheGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B172442C127C3E0E00E66602 /* MustacheGenerator.m */; };
 		B1724473127C4D3F00E66602 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724472127C4D3F00E66602 /* NSString+HTML.m */; };
@@ -24,8 +26,6 @@
 		B17248461280B27F00E66602 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241DE127A698600E66602 /* main.m */; };
 		B172484A1280B2C300E66602 /* MustacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B17248001280AD8700E66602 /* MustacheSpec.m */; };
 		B172484B1280B2C800E66602 /* MustacheTemplateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */; };
-		B172485E1280B36E00E66602 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17241A1127A689B00E66602 /* Cedar.framework */; };
-		B17248AC1280F2FD00E66602 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17248A51280F2E400E66602 /* YAML.framework */; };
 		B1BBF7F512813A7C00D26E72 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B1724472127C4D3F00E66602 /* NSString+HTML.m */; };
 		B1BBF884128290FD00D26E72 /* MustacheFilePartialLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BBF883128290FD00D26E72 /* MustacheFilePartialLoader.m */; };
 		B1BBF886128290FD00D26E72 /* MustacheFilePartialLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BBF883128290FD00D26E72 /* MustacheFilePartialLoader.m */; };
@@ -65,89 +65,11 @@
 		};
 /* End PBXBuildRule section */
 
-/* Begin PBXContainerItemProxy section */
-		B17241A0127A689B00E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AEEE1FB611DC271300029872;
-			remoteInfo = Cedar;
-		};
-		B17241A2127A689B00E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AEEE218611DC28E200029872;
-			remoteInfo = Specs;
-		};
-		B17241A4127A689B00E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AEEE222911DC2B0600029872;
-			remoteInfo = "Cedar-StaticLib";
-		};
-		B17241A6127A689B00E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AEEE227611DC2CF900029872;
-			remoteInfo = iPhoneSpecs;
-		};
-		B17241D7127A690F00E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = AEEE1FB511DC271300029872;
-			remoteInfo = Cedar;
-		};
-		B172486B1280B45B00E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = AEEE1FB511DC271300029872;
-			remoteInfo = Cedar;
-		};
-		B17248A41280F2E400E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = YAML;
-		};
-		B17248A61280F2E400E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EB6C420E124D99BE00886AD1;
-			remoteInfo = test;
-		};
-		B17248A81280F2E400E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EBE745C1124F8C0D00618049;
-			remoteInfo = "test (spec12examples)";
-		};
-		B17248AA1280F2E400E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EB2B5928124E2100001FFEEB;
-			remoteInfo = events;
-		};
-		B17248AD1280F31100E66602 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B17248971280F2E400E66602 /* YAML.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = YAML;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* OCMustache_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMustache_Prefix.pch; sourceTree = "<group>"; };
+		B101038513FB6CFB00196345 /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = "../../../Library/Developer/Xcode/DerivedData/Workspace-bfzyaagfzmvkcbghjwmbvckualyo/Build/Products/Debug/Cedar.framework"; sourceTree = "<group>"; };
+		B101038913FB6D0500196345 /* YAML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAML.framework; path = "../../../Library/Developer/Xcode/DerivedData/Workspace-bfzyaagfzmvkcbghjwmbvckualyo/Build/Products/Debug/YAML.framework"; sourceTree = "<group>"; };
 		B159E13F121E626D00517E46 /* MustacheParser.m.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MustacheParser.m.rl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B159E140121E631A00517E46 /* MustacheParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MustacheParser.h; path = OCMustache/MustacheParser.h; sourceTree = "<group>"; };
 		B159E141121E63A800517E46 /* MustacheTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MustacheTemplate.h; path = OCMustache/MustacheTemplate.h; sourceTree = "<group>"; };
@@ -156,7 +78,6 @@
 		B170532C12874D2E005A3215 /* MustacheSpecPartialLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheSpecPartialLoader.m; sourceTree = "<group>"; };
 		B170533412874E74005A3215 /* MustacheSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MustacheSpec.h; sourceTree = "<group>"; };
 		B17053A61287F52A005A3215 /* MustacheParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MustacheParser.m; path = OCMustache/MustacheParser.m; sourceTree = "<group>"; };
-		B1724191127A689B00E66602 /* Cedar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cedar.xcodeproj; path = cedar/Cedar.xcodeproj; sourceTree = "<group>"; };
 		B17241D3127A690700E66602 /* Specs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Specs; sourceTree = BUILT_PRODUCTS_DIR; };
 		B17241DE127A698600E66602 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B17241E0127A69E600E66602 /* MustacheTemplateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheTemplateSpec.m; sourceTree = "<group>"; };
@@ -170,15 +91,11 @@
 		B1724512127D1E0300E66602 /* MustacheFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MustacheFragment.m; path = OCMustache/MustacheFragment.m; sourceTree = "<group>"; };
 		B17247C2128053E300E66602 /* Mustache-Spec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Mustache-Spec"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B17248001280AD8700E66602 /* MustacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MustacheSpec.m; sourceTree = "<group>"; };
-		B17248971280F2E400E66602 /* YAML.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YAML.xcodeproj; path = YAML/YAML.xcodeproj; sourceTree = "<group>"; };
 		B1BBF882128290FD00D26E72 /* MustacheFilePartialLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MustacheFilePartialLoader.h; path = OCMustache/MustacheFilePartialLoader.h; sourceTree = "<group>"; };
 		B1BBF883128290FD00D26E72 /* MustacheFilePartialLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MustacheFilePartialLoader.m; path = OCMustache/MustacheFilePartialLoader.m; sourceTree = "<group>"; };
 		B1BBF88912834D7300D26E72 /* MustachePartialLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MustachePartialLoader.h; path = OCMustache/MustachePartialLoader.h; sourceTree = "<group>"; };
 		B1F6DDFC13F2323A00EB304B /* libOCMustache.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOCMustache.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1F6DDFE13F2323A00EB304B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B1F6DE0213F2323A00EB304B /* OCMustache-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCMustache-Prefix.pch"; sourceTree = "<group>"; };
-		B1F6DE0313F2323A00EB304B /* OCMustache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMustache.h; sourceTree = "<group>"; };
-		B1F6DE0413F2323A00EB304B /* OCMustache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCMustache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17241DA127A693E00E66602 /* Cedar.framework in Frameworks */,
+				B101038613FB6CFB00196345 /* Cedar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,8 +111,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17248AC1280F2FD00E66602 /* YAML.framework in Frameworks */,
-				B172485E1280B36E00E66602 /* Cedar.framework in Frameworks */,
+				B101038A13FB6D0500196345 /* YAML.framework in Frameworks */,
+				B101038813FB6D0500196345 /* Cedar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,14 +130,13 @@
 		08FB7794FE84155DC02AAC07 /* ObjectiveMustache */ = {
 			isa = PBXGroup;
 			children = (
-				B17248971280F2E400E66602 /* YAML.xcodeproj */,
-				B1724191127A689B00E66602 /* Cedar.xcodeproj */,
+				B101038913FB6D0500196345 /* YAML.framework */,
+				B101038513FB6CFB00196345 /* Cedar.framework */,
 				B1724470127C4D2A00E66602 /* Categories */,
 				B159E13B121E617000517E46 /* Classes */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				B17241DD127A695900E66602 /* Specs */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
-				B1F6DE0013F2323A00EB304B /* OCMustache */,
 				B1F6DDFD13F2323A00EB304B /* Frameworks */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
 			);
@@ -274,17 +190,6 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		B1724192127A689B00E66602 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B17241A1127A689B00E66602 /* Cedar.framework */,
-				B17241A3127A689B00E66602 /* Specs */,
-				B17241A5127A689B00E66602 /* libCedar-StaticLib.a */,
-				B17241A7127A689B00E66602 /* iPhoneSpecs.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B17241DD127A695900E66602 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,41 +212,12 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		B17248981280F2E400E66602 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B17248A51280F2E400E66602 /* YAML.framework */,
-				B17248A71280F2E400E66602 /* test */,
-				B17248A91280F2E400E66602 /* test */,
-				B17248AB1280F2E400E66602 /* events */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B1F6DDFD13F2323A00EB304B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				B1F6DDFE13F2323A00EB304B /* Foundation.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B1F6DE0013F2323A00EB304B /* OCMustache */ = {
-			isa = PBXGroup;
-			children = (
-				B1F6DE0313F2323A00EB304B /* OCMustache.h */,
-				B1F6DE0413F2323A00EB304B /* OCMustache.m */,
-				B1F6DE0113F2323A00EB304B /* Supporting Files */,
-			);
-			path = OCMustache;
-			sourceTree = "<group>";
-		};
-		B1F6DE0113F2323A00EB304B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B1F6DE0213F2323A00EB304B /* OCMustache-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,7 +245,6 @@
 				B172420F127A6BB500E66602 /* PBXBuildRule */,
 			);
 			dependencies = (
-				B17241D8127A690F00E66602 /* PBXTargetDependency */,
 			);
 			name = Specs;
 			productName = Specs;
@@ -387,8 +262,6 @@
 				B11D868E12813863007D9C01 /* PBXBuildRule */,
 			);
 			dependencies = (
-				B172486C1280B45B00E66602 /* PBXTargetDependency */,
-				B17248AE1280F31100E66602 /* PBXTargetDependency */,
 			);
 			name = "Mustache-Spec";
 			productName = "Mustache-Spec";
@@ -432,16 +305,6 @@
 			);
 			mainGroup = 08FB7794FE84155DC02AAC07 /* ObjectiveMustache */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = B1724192127A689B00E66602 /* Products */;
-					ProjectRef = B1724191127A689B00E66602 /* Cedar.xcodeproj */;
-				},
-				{
-					ProductGroup = B17248981280F2E400E66602 /* Products */;
-					ProjectRef = B17248971280F2E400E66602 /* YAML.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B17241D2127A690700E66602 /* Specs */,
@@ -450,65 +313,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B17241A1127A689B00E66602 /* Cedar.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Cedar.framework;
-			remoteRef = B17241A0127A689B00E66602 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B17241A3127A689B00E66602 /* Specs */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = Specs;
-			remoteRef = B17241A2127A689B00E66602 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B17241A5127A689B00E66602 /* libCedar-StaticLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libCedar-StaticLib.a";
-			remoteRef = B17241A4127A689B00E66602 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B17241A7127A689B00E66602 /* iPhoneSpecs.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = iPhoneSpecs.app;
-			remoteRef = B17241A6127A689B00E66602 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B17248A51280F2E400E66602 /* YAML.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = YAML.framework;
-			remoteRef = B17248A41280F2E400E66602 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B17248A71280F2E400E66602 /* test */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = test;
-			remoteRef = B17248A61280F2E400E66602 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B17248A91280F2E400E66602 /* test */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = test;
-			remoteRef = B17248A81280F2E400E66602 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B17248AB1280F2E400E66602 /* events */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = events;
-			remoteRef = B17248AA1280F2E400E66602 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B17241D0127A690700E66602 /* Sources */ = {
@@ -560,24 +364,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		B17241D8127A690F00E66602 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Cedar;
-			targetProxy = B17241D7127A690F00E66602 /* PBXContainerItemProxy */;
-		};
-		B172486C1280B45B00E66602 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Cedar;
-			targetProxy = B172486B1280B45B00E66602 /* PBXContainerItemProxy */;
-		};
-		B17248AE1280F31100E66602 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = YAML;
-			targetProxy = B17248AD1280F31100E66602 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		1DEB927908733DD40010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -612,6 +398,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/Workspace-bfzyaagfzmvkcbghjwmbvckualyo/Build/Products/Debug\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -634,6 +424,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/Workspace-bfzyaagfzmvkcbghjwmbvckualyo/Build/Products/Debug\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OCMustache_Prefix.pch;
@@ -654,6 +448,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/Workspace-bfzyaagfzmvkcbghjwmbvckualyo/Build/Products/Debug\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -676,6 +474,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/Workspace-bfzyaagfzmvkcbghjwmbvckualyo/Build/Products/Debug\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OCMustache_Prefix.pch;
