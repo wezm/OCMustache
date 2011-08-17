@@ -130,6 +130,26 @@ describe(@"MustacheTemplate rendering", ^{
 		[template release];
     });
 
+    it(@"renders inverted sections when the key is NSNull", ^{
+		NSString *templateText = \
+		@"{{#list}}\n"
+		@"* {{item}}\n"
+		@"{{/list}}"
+		@"{{^list}}\n"
+		@"No items\n"
+		@"{{/list}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		[template parseReturningError:nil];
+
+		NSDictionary *context = [NSDictionary dictionaryWithObject:[NSNull null] forKey:@"list"];
+		NSString *expected = @"No items\n";
+
+		NSString *result = [template renderInContext:context];
+		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
+
+		[template release];
+    });
+
     it(@"renders inverted sections when the key is false", ^{
 		NSString *templateText = \
 		@"{{#list}}\n"

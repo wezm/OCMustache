@@ -126,7 +126,7 @@
 			value = [context valueForKey:[self stringWithContentsOfToken:token]];
 
 			// First up skip if this thing is nil or false
-			if(value == nil || ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO))) {
+			if(value == nil || value == [NSNull null] || ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO))) {
 				// Do nothing
 			}
 			else {
@@ -166,7 +166,7 @@
 			value = [context valueForKey:[self stringWithContentsOfToken:token]];
 
 			// TODO: // Extract the first test so it can be shared with above
-			if(value == nil || ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO)) || ([value respondsToSelector:@selector(count)] && ([value count] == 0))) {
+			if(value == nil || value == [NSNull null] || ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO)) || ([value respondsToSelector:@selector(count)] && ([value count] == 0))) {
 				// A false value, render the section in this context
 				return [self renderFragment:fragment inContext:context];
 			}
