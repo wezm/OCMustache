@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:YAML/YAML.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:cedar/Cedar.xcodeproj">
    </FileRef>
    <FileRef
