@@ -110,6 +110,20 @@ describe(@"MustacheTemplate rendering", ^{
 		[template release];
     });
 
+    it(@"renders sections when the value begins with F", ^{
+		NSString *templateText = @"{{#value}}<em>{{value}}</em>{{/value}}";
+		template = [[MustacheTemplate alloc] initWithString:templateText];
+		[template parseReturningError:nil];
+
+		NSDictionary *context = [NSDictionary dictionaryWithObject:@"False" forKey:@"value"];
+		NSString *expected = @"<em>False</em>";
+
+		NSString *result = [template renderInContext:context];
+		NSAssert([expected compare:result] == NSOrderedSame, @"result matches expected");
+
+		[template release];
+    });
+
     it(@"renders inverted sections when the key is nil", ^{
 		NSString *templateText = \
 		@"{{#list}}\n"

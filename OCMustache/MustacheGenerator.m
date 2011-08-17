@@ -17,6 +17,8 @@
 - (NSString *)renderPartialToken:(MustacheToken *)token inContext:(id)context;
 - (NSString *)renderChildFragment:(MustacheFragment *)fragment inContext:(id)context;
 - (NSString *)renderFragment:(MustacheFragment *)fragment inContext:(id)context;
+- (BOOL)isFalsey:(id)value;
+- (BOOL)isSimpleTrueValue:(id)value;
 
 @end
 
@@ -126,11 +128,11 @@
 			value = [context valueForKey:[self stringWithContentsOfToken:token]];
 
 			// First up skip if this thing is nil or false
-			if(value == nil || value == [NSNull null] || ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO))) {
+			if([self isFalsey:value]) {
 				// Do nothing
 			}
 			else {
-				if([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == YES)) {
+				if([self isSimpleTrueValue:value]) {
 					// A true value, render the section in this context
 					return [self renderFragment:fragment inContext:context];
 				}
@@ -166,7 +168,7 @@
 			value = [context valueForKey:[self stringWithContentsOfToken:token]];
 
 			// TODO: // Extract the first test so it can be shared with above
-			if(value == nil || value == [NSNull null] || ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO)) || ([value respondsToSelector:@selector(count)] && ([value count] == 0))) {
+            if([self isFalsey:value] || ([value respondsToSelector:@selector(count)] && ([value count] == 0))) {
 				// A false value, render the section in this context
 				return [self renderFragment:fragment inContext:context];
 			}
@@ -186,6 +188,31 @@
 	NSAssert1(partial != nil, @"Partial with name %@ was nil", [token contentString]);
 
 	return [self renderFragment:partial inContext:context];
+}
+
+- (BOOL)isFalsey:(id)value
+{
+    if (value == nil || value == [NSNull null]) {
+        return YES;
+    }
+    else if ([value isKindOfClass:[NSString class]]) {
+        return [value length] == 0;
+    }
+    else if ([value respondsToSelector:@selector(boolValue)] && ([value boolValue] == NO))
+    {
+        return YES;
+    }
+
+    return NO;
+}
+
+- (BOOL)isSimpleTrueValue:(id)value
+{
+    if ([value isKindOfClass:[NSString class]]) {
+        return [value length] > 0;
+    }
+
+    return [value respondsToSelector:@selector(boolValue)] && ([value boolValue] == YES);
 }
 
 @end
