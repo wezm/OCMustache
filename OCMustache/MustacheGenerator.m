@@ -34,10 +34,10 @@
 }
 
 - (NSString *)stringWithContentsOfToken:(MustacheToken *)token {
-	return [[NSString alloc] initWithBytesNoCopy:token.content
-										   length:token.contentLength
-										 encoding:NSUTF8StringEncoding
-									 freeWhenDone:NO];
+    return (__bridge_transfer NSString *)CFStringCreateWithCStringNoCopy(kCFAllocatorDefault,
+                                                                         token.content,
+                                                                         kCFStringEncodingUTF8, 
+                                                                         kCFAllocatorNull);
 }
 
 - (NSString *)renderInContext:(id)context

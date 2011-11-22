@@ -60,7 +60,7 @@
 				// Compare the tag name
 				if((self.rootToken.contentLength != length) || (memcmp(self.rootToken.content, tag, length) != 0)) {
 					// End tag does not match open tag
-					NSString *closingTag = [[NSString alloc] initWithBytesNoCopy:tag length:length encoding:NSUTF8StringEncoding freeWhenDone:NO];
+					NSString *closingTag = (__bridge_transfer NSString *)CFStringCreateWithBytesNoCopy(kCFAllocatorDefault, (const UInt8 *)tag, length, kCFStringEncodingUTF8, false, kCFAllocatorNull);
 					NSString *localizedDescription = [NSString stringWithFormat:@"closing tag '%@' does not match opening tag '%@'", closingTag, [self.rootToken contentString]];
 					NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedDescription forKey:NSLocalizedDescriptionKey];
 					[parser abortWithError:[NSError errorWithDomain:@"OCMustacheErrorDomain" code:2 userInfo:userInfo]];
