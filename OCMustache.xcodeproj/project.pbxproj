@@ -393,6 +393,89 @@
 			};
 			name = Release;
 		};
+		B138D8E5153807E800D1BCCA /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				SDKROOT = macosx;
+			};
+			name = AppStore;
+		};
+		B138D8E6153807E800D1BCCA /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/Workspace-bfzyaagfzmvkcbghjwmbvckualyo/Build/Products/Debug\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OCMustache_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = Specs;
+				ZERO_LINK = NO;
+			};
+			name = AppStore;
+		};
+		B138D8E7153807E800D1BCCA /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/Workspace-bfzyaagfzmvkcbghjwmbvckualyo/Build/Products/Debug\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OCMustache_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = "Mustache-Spec";
+				ZERO_LINK = NO;
+			};
+			name = AppStore;
+		};
+		B138D8E8153807E800D1BCCA /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/OCMustache.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OCMustache_Prefix.pch;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStore;
+		};
 		B17241D5127A690700E66602 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -629,6 +712,7 @@
 			buildConfigurations = (
 				1DEB927908733DD40010E9CD /* Debug */,
 				1DEB927A08733DD40010E9CD /* Release */,
+				B138D8E5153807E800D1BCCA /* AppStore */,
 				B1CBBEB1141EE12F0011D9A7 /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -639,6 +723,7 @@
 			buildConfigurations = (
 				B17241D5127A690700E66602 /* Debug */,
 				B17241D6127A690700E66602 /* Release */,
+				B138D8E6153807E800D1BCCA /* AppStore */,
 				B1CBBEB2141EE12F0011D9A7 /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -649,6 +734,7 @@
 			buildConfigurations = (
 				B17247C4128053E400E66602 /* Debug */,
 				B17247C5128053E400E66602 /* Release */,
+				B138D8E7153807E800D1BCCA /* AppStore */,
 				B1CBBEB3141EE12F0011D9A7 /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -659,6 +745,7 @@
 			buildConfigurations = (
 				B1F6DE0613F2323A00EB304B /* Debug */,
 				B1F6DE0713F2323A00EB304B /* Release */,
+				B138D8E8153807E800D1BCCA /* AppStore */,
 				B1CBBEB4141EE12F0011D9A7 /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
