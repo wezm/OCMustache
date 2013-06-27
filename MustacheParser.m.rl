@@ -189,7 +189,7 @@
 
 - (void)setErrorAtIndex:(NSUInteger)index
 {
-	NSString *localizedDescription = [NSString stringWithFormat:@"Error at character %ld", index];
+	NSString *localizedDescription = [NSString stringWithFormat:@"Error at character %ld", (unsigned long)index];
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedDescription forKey:NSLocalizedDescriptionKey];
 	[self setError:[NSError errorWithDomain:@"MustacheParserErrorDomain" code:1 userInfo:userInfo]];
 }
