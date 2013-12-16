@@ -68,11 +68,14 @@ tests in Mustache-Spec are to do with whitespace and some false positives on
 the handling of sections and inverted sections due to limitations of the YAML
 library in use to load the specs.
 
+OCMustache is in use in these published applications:
+
+* [Radiopaedia](http://appstore.com/radiopaedia) (iOS)
+
 The following still remains to be completed:
 
 * Better error reporting/handling
 * Proc/lambda tags
-* iOS compatibility
 * Non-Apple platform support (GNUStep) on FreeBSD, Linux
 * Add some examples
 
