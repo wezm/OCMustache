@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   s.source_files  = 'OCMustache'
   # s.exclude_files = 'Classes/Exclude'
 
-  s.public_header_files = 'OCMustache/MustacheTemplate.h'
+  # s.public_header_files = 'OCMustache/MustacheTemplate.h'
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
